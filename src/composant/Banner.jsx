@@ -7,8 +7,8 @@ function Banner() {
     <section className="hero-banner">
       <div className="hero-text">
         <p className="subtitle">
-Meilleure offre en ligne sur les montres connectées</p>
-        <h1 className="title">PORTABLE INTELLIGENT.</h1>
+Les meilleures offres en ligne sur les appareils connectées!</p>
+        <h1 className="title">PORTABLE & MONTRE INTELLIGENT.</h1>
         <p className="offer">JUSQU'À 80% DE RÉDUCTION</p>
       </div>
       <div className="hero-img">

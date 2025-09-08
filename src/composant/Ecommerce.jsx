@@ -1,8 +1,62 @@
 import React, { useState } from 'react';
 import '../assets/css/Ecommerce.css';
 
-import img1 from '../assets/images/smart1.jpg';
-import img2 from '../assets/images/smart2.jpg';
+import img1 from '../assets/images/SmartPhone/img11.jpeg';
+import img2 from '../assets/images/SmartPhone/img12.jpg';
+import img3 from '../assets/images/SmartPhone/img13.jpg';
+import img21 from '../assets/images/SmartPhone/img21.jpg';
+import img22 from '../assets/images/SmartPhone/img22.jpg';
+import img23 from '../assets/images/SmartPhone/img23.jpeg';
+import img31 from '../assets/images/SmartPhone/img31.jpg';
+import img32 from '../assets/images/SmartPhone/img32.jpg';
+import img33 from '../assets/images/SmartPhone/img33.jpg';
+import img41 from '../assets/images/SmartPhone/img41.png';
+import img42 from '../assets/images/SmartPhone/img42.jpg';
+import img43 from '../assets/images/SmartPhone/img43.jpg';
+import img51 from '../assets/images/Ordinateur/img11.jpg';
+import img52 from '../assets/images/Ordinateur/img12.jpg';
+import img53 from '../assets/images/Ordinateur/img13.jpg';
+import img61 from '../assets/images/Tab/img11.jpg';
+import img62 from '../assets/images/Tab/img12.jpg';
+import img63 from '../assets/images/Tab/img13.jpg';
+import img71 from '../assets/images/Accessories/img11.jpg';
+import img72 from '../assets/images/Accessories/img12.jpg';
+import img73 from '../assets/images/Accessories/img13.jpg';
+import img81 from '../assets/images/Ordinateur/img21.jpg';
+import img82 from '../assets/images/Ordinateur/img22.jpg';
+import img83 from '../assets/images/Ordinateur/img23.jpg';
+import img91 from '../assets/images/Tab/img21.jpg';
+import img92 from '../assets/images/Tab/img22.png';
+import img93 from '../assets/images/Tab/img23.jpg';
+import img101 from '../assets/images/Accessories/img21.jpg';
+import img102 from '../assets/images/Accessories/img22.jpg';
+import img103 from '../assets/images/Accessories/img23.jpg';
+import img111 from '../assets/images/Tab/img31.png';
+import img112 from '../assets/images/Tab/img32.jpg';
+import img113 from '../assets/images/Tab/img33.jpg';
+import img121 from '../assets/images/Accessories/img31.jpg';
+import img122 from '../assets/images/Accessories/img32.jpg';
+import img123 from '../assets/images/Accessories/img33.jpg';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Ecommerce = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -24,9 +78,9 @@ const Ecommerce = () => {
       originalPrice: "1099€",
       newPrice: "999€",
       saving: "100€",
-      image: img1,
+      image: img3,
       images: [
-        img1,
+        img3,
         img2,
         img1
       ],
@@ -40,11 +94,11 @@ const Ecommerce = () => {
       originalPrice: "899€",
       newPrice: "799€",
       saving: "100€",
-      image: "https://via.placeholder.com/300x300/FF6B6B/FFFFFF?text=Galaxy+S21",
+      image: img23,
       images: [
-        "https://via.placeholder.com/600x600/FF6B6B/FFFFFF?text=S21+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=S21+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=S21+Side"
+        img23,
+        img22,
+        img21
       ],
       description: "Le Samsung Galaxy S21 est équipé d'un écran Dynamic AMOLED 2X de 6,2 pouces, d'un triple appareil photo avec objectif principal 64MP, ultra grand-angle et téléobjectif, et du processeur Exynos 2100.",
       brand: "Samsung",
@@ -56,11 +110,11 @@ const Ecommerce = () => {
       originalPrice: "649€",
       newPrice: "599€",
       saving: "50€",
-      image: "https://via.placeholder.com/300x300/4285F4/FFFFFF?text=Pixel+6",
+      image: img31,
       images: [
-        "https://via.placeholder.com/600x600/4285F4/FFFFFF?text=Pixel+6+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=Pixel+6+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=Pixel+6+Side"
+        img31,
+        img32,
+        img33
       ],
       description: "Le Google Pixel 6 dispose du premier processeur Google Tensor, d'un appareil photo principal 50MP et d'un ultra grand-angle 12MP, le tout tournant sous Android 12 pur.",
       brand: "Google",
@@ -72,11 +126,11 @@ const Ecommerce = () => {
       originalPrice: "749€",
       newPrice: "699€",
       saving: "50€",
-      image: "https://via.placeholder.com/300x300/FF6900/FFFFFF?text=Mi+11",
+      image: img41,
       images: [
-        "https://via.placeholder.com/600x600/FF6900/FFFFFF?text=Mi+11+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=Mi+11+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=Mi+11+Side"
+        img41,
+        img42,
+        img43
       ],
       description: "Le Xiaomi Mi 11 possède un écran AMOLED Quad HD+ de 6,81 pouces à 120 Hz, un appareil photo principal 108MP et est alimenté par le processeur Snapdragon 888.",
       brand: "Xiaomi",
@@ -88,11 +142,11 @@ const Ecommerce = () => {
       originalPrice: "2199€",
       newPrice: "1999€",
       saving: "200€",
-      image: "https://via.placeholder.com/300x300/000000/FFFFFF?text=MacBook+Pro",
+      image: img51,
       images: [
-        "https://via.placeholder.com/600x600/000000/FFFFFF?text=MacBook+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=MacBook+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=MacBook+Side"
+        img51,
+        img52,
+        img53
       ],
       description: "Le MacBook Pro 14 dispose de la puce M1 Pro, d'un écran Liquid Retina XDR et d'une autonomie allant jusqu'à 17 heures. Parfait pour les professionnels créatifs.",
       brand: "Apple",
@@ -104,11 +158,11 @@ const Ecommerce = () => {
       originalPrice: "749€",
       newPrice: "649€",
       saving: "100€",
-      image: "https://via.placeholder.com/300x300/2C3E50/FFFFFF?text=Tab+S7",
+      image: img61,
       images: [
-        "https://via.placeholder.com/600x600/2C3E50/FFFFFF?text=Tab+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=Tab+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=Tab+Side"
+        img61,
+        img62,
+        img63
       ],
       description: "La tablette Galaxy Tab S7 offre un écran LCD 120 Hz de 11 pouces, le S Pen inclus et une autonomie de jusqu'à 15 heures. Idéale pour le travail et le divertissement.",
       brand: "Samsung",
@@ -120,11 +174,11 @@ const Ecommerce = () => {
       originalPrice: "279€",
       newPrice: "249€",
       saving: "30€",
-      image: "https://via.placeholder.com/300x300/CCCCCC/000000?text=AirPods+Pro",
+      image: img71,
       images: [
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=AirPods+Front",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=AirPods+Case",
-        "https://via.placeholder.com/600x600/FFFFFF/000000?text=AirPods+Side"
+        img71,
+        img72,
+        img73
       ],
       description: "Les AirPods Pro offrent une annulation active du bruit, une qualité audio exceptionnelle et une autonomie allant jusqu'à 4,5 heures d'écoute (24h avec le boîtier).",
       brand: "Apple",
@@ -136,11 +190,11 @@ const Ecommerce = () => {
       originalPrice: "1499€",
       newPrice: "1299€",
       saving: "200€",
-      image: "https://via.placeholder.com/300x300/007DB8/FFFFFF?text=XPS+13",
+      image: img81,
       images: [
-        "https://via.placeholder.com/600x600/007DB8/FFFFFF?text=XPS+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=XPS+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=XPS+Side"
+        img81,
+        img82,
+        img83
       ],
       description: "Le Dell XPS 13 est un ultraportable avec écran InfinityEdge, processeur Intel Core i7 de 11e génération et autonomie allant jusqu'à 14 heures.",
       brand: "Dell",
@@ -152,11 +206,11 @@ const Ecommerce = () => {
       originalPrice: "649€",
       newPrice: "599€",
       saving: "50€",
-      image: "https://via.placeholder.com/300x300/5AC8FA/000000?text=iPad+Air",
+      image: img91,
       images: [
-        "https://via.placeholder.com/600x600/5AC8FA/000000?text=iPad+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=iPad+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=iPad+Side"
+        img91,
+        img92,
+        img93
       ],
       description: "L'iPad Air dispose de la puce A14 Bionic, d'un écran Liquid Retina de 10,9 pouces et est compatible avec l'Apple Pencil (2e génération) et le Magic Keyboard.",
       brand: "Apple",
@@ -168,11 +222,11 @@ const Ecommerce = () => {
       originalPrice: "349€",
       newPrice: "299€",
       saving: "50€",
-      image: "https://via.placeholder.com/300x300/000000/FFFFFF?text=WH-1000XM4",
+      image: img101,
       images: [
-        "https://via.placeholder.com/600x600/000000/FFFFFF?text=Sony+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=Sony+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=Sony+Side"
+        img101,
+        img102,
+        img103
       ],
       description: "Les écouteurs Sony WH-1000XM4 offrent une annulation de bruit exceptionnelle, une autonomie de 30 heures et une qualité audio HD avec le DSEE Extreme.",
       brand: "Sony",
@@ -184,11 +238,11 @@ const Ecommerce = () => {
       originalPrice: "749€",
       newPrice: "649€",
       saving: "100€",
-      image: "https://via.placeholder.com/300x300/FF0000/FFFFFF?text=MatePad+Pro",
+      image: img111,
       images: [
-        "https://via.placeholder.com/600x600/FF0000/FFFFFF?text=MatePad+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=MatePad+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=MatePad+Side"
+        img111,
+        img112,
+        img113
       ],
       description: "Le MatePad Pro de Huawei offre un écran 90 Hz de 12,6 pouces, une autonomie de jusqu'à 12 heures et est compatible avec le M-Pencil (2e génération).",
       brand: "Huawei",
@@ -200,11 +254,11 @@ const Ecommerce = () => {
       originalPrice: "109€",
       newPrice: "89€",
       saving: "20€",
-      image: "https://via.placeholder.com/300x300/00A859/FFFFFF?text=MX+Keys",
+      image: img121,
       images: [
-        "https://via.placeholder.com/600x600/00A859/FFFFFF?text=MX+Keys+Front",
-        "https://via.placeholder.com/600x600/CCCCCC/000000?text=MX+Keys+Back",
-        "https://via.placeholder.com/600x600/EEEEEE/000000?text=MX+Keys+Side"
+        img121,
+        img122,
+        img123
       ],
       description: "Le clavier Logitech MX Keys offre une frappe comfortable, un rétroéclairage intelligent et une connexion multi-appareils. Autonomie de jusqu'à 10 jours.",
       brand: "Logitech",
