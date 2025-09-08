@@ -12,7 +12,7 @@ const Acceuil = () => {
         <div>
             <TopBarre/>
             <TopHeader/>
-            {/* <NavBar/> */}
+            <NavBar/> 
             <HeroBanner/>
             <SmartphoneDeals/>
             <MegaMartFooter/>

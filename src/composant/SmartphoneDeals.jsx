@@ -253,7 +253,7 @@ const SmartphoneDeals = () => {
       
 
       {/* Section des marques électroniques (ordinateurs) */}
-      <div className="brands-section">
+      <div id='ordinateurs' className="brands-section">
         <div className="section-header">
           <h1>Profitez des meilleures offres sur les ordinateurs</h1>
           
@@ -283,7 +283,7 @@ const SmartphoneDeals = () => {
 
       <Banner/>
 
-      <div className="deals-container">
+      <div id='accessoires' className="deals-container">
         <div className="section-header">
           <h1>Profitez des meilleures offres sur les accessoires</h1>
           
@@ -293,24 +293,24 @@ const SmartphoneDeals = () => {
         </div>
         
         <div className="products-grid">
-          {accessories.map((access) => (
-            <div key={access.id} className="product-card" onClick={() => openModal(product)}>
+          {accessories.map((product) => (
+            <div key={product.id} className="product-card" onClick={() => openModal(product)}>
               <div className="product-image">
-                <img src={access.image} alt={access.name} />
+                <img src={product.image} alt={product.name} />
               </div>
-              <h3 className="product-name">{access.name}</h3>
+              <h3 className="product-name">{product.name}</h3>
               <div className="price-container">
-                <span className="original-price">{access.originalPrice}</span>
-                <span className="new-price">{access.newPrice}</span>
-              </div>
-              <div className="saving">Save - {access.saving}</div>
+                <span className="original-price">{product.originalPrice}</span>
+                <span className="new-price">{product.newPrice}</span>
+              </div>product
+              <div className="saving">Save - {product.saving}</div>
             </div>
           ))}
         </div>
       </div>
 
 
-      <div className="deals-container">
+      <div id='tablettes' className="deals-container">
         <div className="section-header">
           <h1>Profitez des meilleures offres sur les tablettes</h1>
           
@@ -337,7 +337,7 @@ const SmartphoneDeals = () => {
       </div>
 
 
-       <div className="brands-section">
+       <div id='electromenager' className="brands-section">
         <div className="section-header">
           <h1>Profitez des meilleures offres sur les electromenager</h1>
 
