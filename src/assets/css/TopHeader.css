@@ -1,0 +1,59 @@
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0070f3;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.electro h2{
+  text-decoration: none;
+  cursor: pointer;
+  color: #0070f3;
+}
+
+.search-bar {
+  flex: 1;
+  margin: 0 40px;
+  position: relative;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 40px 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.search-bar .search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+}
+
+.actions {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #0070f3;
+  cursor: pointer;
+}

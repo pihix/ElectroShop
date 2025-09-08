@@ -1,0 +1,143 @@
+.smart-watch-promo-full {
+  width: 100%;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 50px 0;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 0;
+}
+
+.promo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.promo-text {
+  flex: 1;
+}
+
+.main-text {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.sub-text {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  color: #ffd700;
+}
+
+.discount-text {
+  display: inline-block;
+  background-color: #f10909;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.promo-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+}
+
+.time-display {
+  font-family: 'Courier New', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.indicators {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.indicator {
+  font-weight: 700;
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+.indicator.active {
+  color: #ffd700;
+}
+
+.separator {
+  margin: 0 2px;
+  color: #ccc;
+}
+
+.progress-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.progress-text {
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 10px;
+  min-width: 40px;
+}
+
+.progress-bar {
+  width: 100px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  background-color: #ffd700;
+  border-radius: 4px;
+}
+
+.product-count {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .promo-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .promo-text {
+    margin-bottom: 30px;
+  }
+  
+  .main-text {
+    font-size: 24px;
+  }
+  
+  .time-display {
+    font-size: 28px;
+  }
+}

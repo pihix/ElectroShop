@@ -1,0 +1,33 @@
+.top-barre {
+  width: 100%;                     /* occupe toute la largeur */
+  background-color: #f3f9fb;          /* couleur de fond */
+  color: #222;                     /* texte blanc */
+  padding: 8px 20px;               /* espacement intérieur */
+  display: flex;                   /* flexbox */
+  justify-content: space-between;  /* gauche et droite espacés */
+  align-items: center;             /* alignement vertical */
+  font-size: 14px;
+  box-sizing: border-box;          /* padding inclus dans width */
+}
+
+.top-barre .left,
+.top-barre .right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.top-barre .info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.top-barre .icon {
+  color: #008ecc; /* couleur des icônes */
+}
+
+.top-barre span {
+  font-weight: bold;
+  color: #008ecc;
+}
