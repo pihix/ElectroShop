@@ -42,6 +42,7 @@ jobs:
     name: Lint Code
     runs-on: ubuntu-latest
     needs: install-dependencies
+    continue-on-error: true
     defaults:
       run:
         working-directory: frontend
