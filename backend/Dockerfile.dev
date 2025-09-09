@@ -1,0 +1,23 @@
+# Dockerfile pour le développement
+FROM node:16-alpine
+
+# Installe les outils de développement
+RUN apk add --no-cache git
+
+# Définit le répertoire de travail
+WORKDIR /app
+
+# Copie les fichiers package.json
+COPY package*.json ./
+
+# Installe toutes les dépendances (dev + prod)
+RUN npm ci && npm cache clean --force
+
+# Copie le code source
+COPY . .
+
+# Expose les ports pour l'application et le debugging
+EXPOSE 3000 9229
+
+# Commande par défaut pour le développement avec hot reload
+CMD ["npm", "run", "start:dev"]
