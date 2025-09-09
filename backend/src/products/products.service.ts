@@ -9,7 +9,8 @@ import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
 import { Model } from 'mongoose';
-import { Products, ProductDocumenet } from './models/products';
+import { Product, ProductDocument } from './models/products';
+import { Categorie, CategorieDocument } from './models/categorie';
 import { Cart, CartDocumenet } from './models/cart';
 import { User, UsersDocumenet } from '../auth/model/users';
 
@@ -21,7 +22,8 @@ import { Request } from 'express';
 @Injectable({ scope: Scope.REQUEST })
 export class ProductsService {
   constructor(
-    @InjectModel(Products.name) private ProductModel: Model<ProductDocumenet>,
+    @InjectModel(Product.name) private ProductModel: Model<ProductDocument>,
+    @InjectModel(Categorie.name) private CategorieModel: Model<CategorieDocument>,
     @InjectModel(User.name) private userModal: Model<UsersDocumenet>,
     @InjectModel(Cart.name) private cartModal: Model<CartDocumenet>,
     @Inject(REQUEST) private request: Request,

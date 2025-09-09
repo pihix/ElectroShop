@@ -7,31 +7,34 @@ export type ProductDocument = Product & Document;
 export class Product {
   @Prop({ required: true })
   nom: string;
-  
+
   @Prop({ required: true })
   description: string;
-  
+
   @Prop({ required: true })
   prix: number;
-  
+
   @Prop({ required: true })
   stock: number;
-  
+
   @Prop({ required: true })
   marque: string;
-  
+
   @Prop({ required: true })
   modele: string;
-  
+
   @Prop({ type: [String] })
   images: string[];
-  
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Categorie', required: true })
   categorie: mongoose.Types.ObjectId;
-  
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
+  gestionnaire: mongoose.Types.ObjectId; // Utilisateur qui gère ce produit
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Partenaire' })
   partenaire: mongoose.Types.ObjectId;
-  
+
   // Méthodes
   consulterDetails(): any {
     return {
@@ -43,15 +46,15 @@ export class Product {
       modele: this.modele
     };
   }
-  
+
   mettreAJourStock(nouvelleQuantite: number): void {
     this.stock = nouvelleQuantite;
   }
-  
+
   verifierDisponibilite(): boolean {
     return this.stock > 0;
   }
-  
+
   appliquerRemise(pourcentage: number): void {
     this.prix = this.prix * (1 - pourcentage / 100);
   }
