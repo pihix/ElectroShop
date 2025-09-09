@@ -1,16 +1,40 @@
 .smartphone-deals {
   font-family: 'Arial', sans-serif;
-  max-width: 1200px;
+  max-width: 2200px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f8f9fa;
 }
 
-/* En-têtes de section avec trait bleu */
 .section-header {
-  margin-bottom: 30px;
-  text-align: left;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 20px;
 }
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0; 
+}
+
+.view-all-link {
+  font-size: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.view-all-link:hover {
+  color: #0056b3;
+}
+
+.arrow {
+  margin-left: 5px;
+}
+
 
 .section-header h1, .section-header h2 {
   font-size: 32px;

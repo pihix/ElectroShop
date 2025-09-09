@@ -225,12 +225,15 @@ const SmartphoneDeals = () => {
       {/* Section des offres smartphones */}
       <div id="smartphones" className="deals-container">
         <div className="section-header">
-          <h1>Profitez des meilleures offres sur les smartphones</h1>
-          
+          <h1 className="section-title">
+            Profitez des meilleures offres sur les smartphones
+          </h1>
+
           <Link to="/all-products" className="view-all-link">
             Voir plus <span className="arrow">→</span>
           </Link>
         </div>
+
         
         <div className="products-grid">
           {products.map((product) => (

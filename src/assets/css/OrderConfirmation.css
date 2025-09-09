@@ -1,65 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
 .confirmation-page {
-  font-family: 'Inter', sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
-  min-height: 100vh;
-  background: #f0f4ff;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0fff4, #e6f7ff);
+  font-family: "Poppins", sans-serif;
+}
+
+.confirmation-card {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 20px;
   text-align: center;
-  color: #333;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 1s ease-in-out;
+  max-width: 450px;
 }
 
 .confirmation-icon {
-  font-size: 4rem;
-  color: #007bff;
-  margin-bottom: 1.5rem;
+  font-size: 70px;
+  color: #28a745;
+  margin-bottom: 20px;
+  animation: pop 0.6s ease forwards;
 }
 
 .confirmation-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #007bff;
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 15px;
 }
 
 .confirmation-message {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  font-size: 16px;
   color: #555;
+  margin-bottom: 25px;
+  line-height: 1.6;
 }
 
 .confirmation-btn {
-  padding: 1rem 2rem;
-  background: #007bff;
-  color: #fff;
-  font-weight: 700;
-  border: none;
+  display: inline-block;
+  padding: 12px 25px;
+  background: #28a745;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
   border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .confirmation-btn:hover {
-  background: #0056b3;
+  background: #218838;
+  transform: scale(1.05);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .confirmation-title {
-    font-size: 1.5rem;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  .confirmation-message {
-    font-size: 0.95rem;
-  }
-
-  .confirmation-btn {
-    padding: 0.8rem 1.5rem;
-  }
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
 }

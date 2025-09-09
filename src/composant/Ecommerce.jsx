@@ -39,25 +39,6 @@ import img122 from '../assets/images/Accessories/img32.jpg';
 import img123 from '../assets/images/Accessories/img33.jpg';
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const Ecommerce = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
