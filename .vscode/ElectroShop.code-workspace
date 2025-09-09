@@ -1,0 +1,36 @@
+{
+  "folders": [
+    {
+      "name": "Backend",
+      "path": "./backend"
+    },
+    {
+      "name": "Frontend",
+      "path": "./frontend"
+    },
+    {
+      "name": "Root",
+      "path": "./"
+    }
+  ],
+  "settings": {
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "eslint.workingDirectories": ["backend"],
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-eslint",
+      "ms-vscode-remote.remote-containers"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "composite": true
+  },
+  "references": [
+    {
+      "path": "./backend"
+    }
+  ],
+  "files": [],
+  "include": ["backend/src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "**/node_modules",
+    "**/dist"
+  ]
+}
