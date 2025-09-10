@@ -1,0 +1,109 @@
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.topbar-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.topbar-brand:hover {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  max-width: 380px;
+  width: 100%;
+  background: #f7f7f7;
+  border-radius: 25px;
+  padding: 0.35rem 0.9rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+.search-box:focus-within {
+  background: #fff;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.search-box button {
+  border: none;
+  background: none;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.search-box button:hover {
+  color: #3498db;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topbar-actions .icon-btn {
+  position: relative;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #444;
+  transition: color 0.3s;
+}
+.topbar-actions .icon-btn:hover {
+  color: #3498db;
+}
+
+.icon-btn .badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.user-menu img {
+  border-radius: 50%;
+  border: 2px solid #3498db;
+  width: 36px;
+  height: 36px;
+}
+
+.user-menu span {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2c3e50;
+}

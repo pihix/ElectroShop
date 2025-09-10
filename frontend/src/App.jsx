@@ -10,6 +10,13 @@ import AuthPage from "./pages/AuthPage";
 import Panier from "./pages/Panier";
 import Commande from "./pages/Commande";
 import EcoommercePage from "./pages/EcommercePage";
+import Dashbord from "./pages/Admin/dashbord";
+import TableauBord from "./composant/Admin/TableauBord";
+import Clients from "./composant/Admin/Client";
+import Produits from "./composant/Admin/Produits";
+import Commandes from "./composant/Admin/Commande";
+
+
 
 function App() {
   return (
@@ -20,6 +27,12 @@ function App() {
         <Route path="/cart" element={<Panier />} />
         <Route path="/confirmation" element={<Commande/>} />
         <Route path="/all-products" element= {<EcoommercePage/>} />
+        <Route path="/admin" element={<Dashbord/>} />
+        <Route path="/dashbord" element={<TableauBord/>} />
+        <Route path="/clients" element={<Clients/>} />
+        <Route path="/produits" element={<Produits/>} />
+        <Route path="/list_commandes" element={<Commandes/>} />
+
       </Routes>
     </BrowserRouter>
   );

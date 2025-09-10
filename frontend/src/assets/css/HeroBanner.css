@@ -122,7 +122,6 @@
   color: #ffd700;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .promo-container {
     flex-direction: column;

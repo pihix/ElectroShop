@@ -12,7 +12,6 @@ body {
   padding: 20px;
 }
 
-/* ====== HEADER ====== */
 .section-header h1 {
   /* text-align: center; */
   font-size: 2.2rem;
@@ -21,13 +20,11 @@ body {
   color: #222;
 }
 
-/* ====== LAYOUT ====== */
 .content-wrapper {
   display: flex;
   gap: 25px;
 }
 
-/* ====== SIDEBAR ====== */
 .sidebar {
   flex: 0 0 250px;
   background: #fff;
@@ -84,7 +81,6 @@ body {
   background: #ff4444;
 }
 
-/* ====== PRODUCTS GRID ====== */
 .products-container {
   flex: 1;
   padding: 20px;
@@ -98,7 +94,6 @@ body {
   justify-items: center; 
 }
 
-/* ====== PRODUCT CARD ====== */
 .product-card {
   background: #fff;
   border-radius: 20px;
@@ -118,7 +113,6 @@ body {
   box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
-/* ====== PRODUCT IMAGE ====== */
 .product-image {
   display: flex;
   justify-content: center;
@@ -142,7 +136,6 @@ body {
   transform: scale(1.05);
 }
 
-/* ====== PRODUCT INFO ====== */
 .product-name {
   font-size: 1.2rem;
   font-weight: 700;
@@ -179,7 +172,6 @@ body {
   font-weight: 600;
 }
 
-/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -195,8 +187,6 @@ body {
   }
 }
 
-
-/* ====== PAGINATION ====== */
 .pagination {
   margin-top: 30px;
   text-align: center;
@@ -221,7 +211,6 @@ body {
   color: #fff;
 }
 
-/* ====== MODAL ====== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -306,7 +295,6 @@ body {
   object-fit: cover;
 }
 
-/* Details */
 .modal-details {
   flex: 1;
   display: flex;

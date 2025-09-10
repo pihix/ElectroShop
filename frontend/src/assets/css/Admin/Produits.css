@@ -1,0 +1,103 @@
+.produits-page {
+  background: #f8f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.produits-container {
+  padding: 1.5rem;
+}
+
+.produits-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.5rem;
+}
+
+.produits-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.produits-subtitle {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+.btn-add {
+  background: linear-gradient(135deg, #ff7f50, #e65c00);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.btn-add:hover {
+  background: linear-gradient(135deg, #e65c00, #b34700);
+  transform: translateY(-2px);
+}
+
+.produits-table-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.produits-table-card table {
+  margin-bottom: 0;
+  border-radius: 12px;
+}
+
+.produits-table-card th {
+  background: #f1f3f6;
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 12px;
+}
+
+.produits-table-card td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.produits-table-card tr:hover {
+  background: #f8f9fa;
+  transition: background 0.2s;
+}
+
+.produit-modal .modal-content {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.produit-detail .detail-box {
+  background: #fdfdfd;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.produit-detail .detail-box p {
+  margin: 0;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.produit-detail .detail-box span {
+  color: #2c3e50;
+}
+
+.produit-form input,
+.produit-form textarea {
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #dee2e6;
+  transition: 0.3s;
+}
+
+.produit-form input:focus,
+.produit-form textarea:focus {
+  border-color: #ff7f50;
+  box-shadow: 0 0 6px rgba(255, 127, 80, 0.3);
+}

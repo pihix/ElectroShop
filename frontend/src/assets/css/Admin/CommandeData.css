@@ -1,0 +1,63 @@
+.commande-table-container {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+}
+
+.commande-table thead {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.commande-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.commande-table tbody tr:hover {
+  background: #f7faff;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.commande-table td {
+  vertical-align: middle;
+  padding: 0.85rem;
+}
+
+.status-badge {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+}
+
+.action-btn {
+  border-radius: 50%;
+  padding: 6px 9px;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+}
+
+.table-footer {
+  padding: 0.9rem 1rem;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+}
+
+.pagination-custom .page-item.active .page-link {
+  background-color: #2575fc;
+  border-color: #2575fc;
+}
+
+.pagination-custom .page-link {
+  border-radius: 8px;
+  margin: 0 2px;
+  transition: all 0.2s ease;
+}
+
+.pagination-custom .page-link:hover {
+  background-color: #e6f0ff;
+}

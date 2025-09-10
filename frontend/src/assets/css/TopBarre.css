@@ -1,13 +1,13 @@
 .top-barre {
-  width: 100%;                     /* occupe toute la largeur */
-  background-color: #f3f9fb;          /* couleur de fond */
-  color: #222;                     /* texte blanc */
-  padding: 8px 20px;               /* espacement intérieur */
-  display: flex;                   /* flexbox */
-  justify-content: space-between;  /* gauche et droite espacés */
-  align-items: center;             /* alignement vertical */
+  width: 100%;                     
+  background-color: #f3f9fb;         
+  color: #222;                     
+  padding: 8px 20px;             
+  display: flex;                  
+  justify-content: space-between;  
+  align-items: center;             
   font-size: 14px;
-  box-sizing: border-box;          /* padding inclus dans width */
+  box-sizing: border-box;          
 }
 
 .top-barre .left,
@@ -24,7 +24,7 @@
 }
 
 .top-barre .icon {
-  color: #008ecc; /* couleur des icônes */
+  color: #008ecc; 
 }
 
 .top-barre span {

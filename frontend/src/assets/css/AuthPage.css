@@ -98,8 +98,6 @@
   text-align: center;
 }
 
-
-/* Carte centrale */
 .auth-card {
   background: rgba(255, 255, 255, 0.15); 
   backdrop-filter: blur(10px); 
@@ -120,7 +118,6 @@
   font-size: 22px;
 }
 
-/* Champs du formulaire */
 .form-group {
   margin-bottom: 18px;
   text-align: left;
@@ -148,7 +145,6 @@
   box-shadow: 0 0 6px rgba(79, 172, 254, 0.5);
 }
 
-/* Bouton */
 .auth-btn {
   width: 100%;
   padding: 12px;
@@ -168,7 +164,6 @@
   background: linear-gradient(135deg, #43e97b, #38f9d7);
 }
 
-/* Texte toggle */
 .toggle-text {
   margin-top: 18px;
   font-size: 14px;
@@ -187,7 +182,6 @@
   text-decoration: underline;
 }
 
-/* Animation d'apparition */
 @keyframes fadeIn {
   from {
     opacity: 0;

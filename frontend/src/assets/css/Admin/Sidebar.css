@@ -1,0 +1,104 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar-header {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem;
+}
+
+.sidebar-nav .section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #95a5a6;
+  margin: 1.5rem 0 0.5rem;
+  padding-left: 0.6rem;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: #2c3e50;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 4px;
+}
+
+.sidebar-nav a svg {
+  margin-right: 12px;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  transition: color 0.3s ease;
+}
+
+.sidebar-nav a:hover {
+  background: #ecf5fc;
+  color: #3498db;
+}
+.sidebar-nav a:hover svg {
+  color: #3498db;
+}
+
+.sidebar-nav a.active {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3c72 100%);
+  color: #fff;
+  font-weight: 600;
+}
+.sidebar-nav a.active svg {
+  color: #fff;
+}
+
+.topbar-brand {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-decoration: none;
+  margin-bottom: 25px;
+}
+.topbar-brand:hover {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center; 
+  gap: 11px; 
+}
+
+.logo .icon {
+  margin-top: -8px;
+  font-size: 1.rem;
+  color: #3498db;
+}
+
+

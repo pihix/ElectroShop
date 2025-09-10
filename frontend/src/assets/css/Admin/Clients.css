@@ -1,0 +1,96 @@
+.clients-page {
+  background: #f8f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.clients-container {
+  padding: 1.5rem;
+}
+
+.clients-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.5rem;
+}
+
+.clients-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.clients-subtitle {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+.btn-add {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.btn-add:hover {
+  background: linear-gradient(135deg, #2980b9, #1f6391);
+  transform: translateY(-2px);
+}
+
+.filter-card {
+  border-radius: 12px;
+  border: none;
+}
+
+.search-input,
+.status-select {
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #dee2e6;
+  transition: 0.3s;
+}
+
+.search-input:focus,
+.status-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+
+.btn-search {
+  border-radius: 8px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #27ae60, #219150);
+  border: none;
+  transition: 0.3s;
+}
+.btn-search:hover {
+  background: linear-gradient(135deg, #219150, #17663a);
+  transform: scale(1.03);
+}
+
+.clients-table-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.clients-table-card table {
+  margin-bottom: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.clients-table-card th {
+  background: #f1f3f6;
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 12px;
+}
+
+.clients-table-card td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.clients-table-card tr:hover {
+  background: #f8f9fa;
+  transition: background 0.2s;
+}

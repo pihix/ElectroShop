@@ -14,11 +14,9 @@ const AuthPage = () => {
   const handleSubmit = (e) => {
   e.preventDefault();
   if (isLogin) {
-    // TODO: login API call
     alert("Connexion réussie ✅");
     navigate("/"); 
   } else {
-    // TODO: register API call
     alert("Compte créé avec succès 🎉");
     setIsLogin(true); 
   }
