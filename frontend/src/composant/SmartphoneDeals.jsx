@@ -297,7 +297,7 @@ const SmartphoneDeals = () => {
         
         <div className="products-grid">
           {accessories.map((access) => (
-            <div key={access.id} className="product-card" onClick={() => openModal(product)}>
+            <div key={access.id} className="product-card" onClick={() => openModal(access)}>
               <div className="product-image">
                 <img src={access.image} alt={access.name} />
               </div>
