@@ -27,7 +27,7 @@ function App() {
         <Route path="/cart" element={<Panier />} />
         <Route path="/confirmation" element={<Commande/>} />
         <Route path="/all-products" element= {<EcoommercePage/>} />
-        <Route path="/admin" element={<Dashbord/>} />
+        {/* <Route path="/admin" element={<Dashbord/>} /> */}
         <Route path="/dashbord" element={<TableauBord/>} />
         <Route path="/clients" element={<Clients/>} />
         <Route path="/produits" element={<Produits/>} />

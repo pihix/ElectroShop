@@ -24,7 +24,12 @@
 }
 
 .top-barre .icon {
-  color: #008ecc; 
+  color: #008ecc;
+  margin-top: -12px;
+}
+
+.top-barre p {
+  margin-top: 5px;
 }
 
 .top-barre span {

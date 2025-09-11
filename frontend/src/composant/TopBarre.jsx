@@ -7,7 +7,9 @@ function TopBarre() {
     <div className="top-barre">
       {/* Gauche */}
       <div className="left">
-        <FaTags className="icon" />
+        <span>
+          <FaTags className="icon" />
+        </span>
         <p>
           Bienvenue chez <span>ElectroShop</span>
         </p>
@@ -19,11 +21,12 @@ function TopBarre() {
           <p>
             Livraison gratuite à <span>38100</span>
           </p>
-          <FaTruck className="icon" />
+          <span><FaTruck className="icon" /></span>
+          
         </div>
         <div className="info">
           <p>+33 744816334</p>
-          <FaPhone className="icon" />
+          <span><FaPhone className="icon" /></span>
         </div>
       </div>
     </div>
