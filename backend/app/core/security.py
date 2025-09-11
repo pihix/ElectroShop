@@ -28,21 +28,44 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 
-# Create Access & Refresh Token
-async def get_user_token(id: int, refresh_token=None):
-    payload = {"id": id}
+# # Create Access & Refresh Token
+# async def get_user_token(id: int, refresh_token=None):
+#     payload = {"id": id}
+
+#     access_token_expiry = timedelta(minutes=settings.access_token_expire_minutes)
+
+#     access_token = await create_access_token(payload, access_token_expiry)
+
+#     if not refresh_token:
+#         refresh_token = await create_refresh_token(payload)
+
+#     return TokenResponse(
+#         access_token=access_token,
+#         refresh_token=refresh_token,
+#         expires_in=access_token_expiry.seconds
+#     )
+
+
+async def get_user_token(id: int, role: str, refresh_token: str = None):
+    payload = {
+        "id": id,
+        "role": role  # 🔥 Ajout du rôle ici pour que le frontend puisse l'utiliser
+    }
 
     access_token_expiry = timedelta(minutes=settings.access_token_expire_minutes)
 
+    # Génération du token d'accès
     access_token = await create_access_token(payload, access_token_expiry)
 
+    # Si aucun refresh_token fourni, on en génère un
     if not refresh_token:
-        refresh_token = await create_refresh_token(payload)
+        refresh_token = await create_refresh_token({"id": id})
 
     return TokenResponse(
         access_token=access_token,
         refresh_token=refresh_token,
-        expires_in=access_token_expiry.seconds
+        expires_in=access_token_expiry.seconds,
+        token_type="Bearer"
     )
 
 
@@ -62,11 +85,18 @@ async def create_refresh_token(data):
 
 
 # Get Payload Of Token
-def get_token_payload(token):
+# def get_token_payload(token):
+#     try:
+#         return jwt.decode(token, settings.secret_key, [settings.algorithm])
+#     except JWTError:
+#         raise ResponseHandler.invalid_token('access')
+
+
+def get_token_payload(token: str):
     try:
-        return jwt.decode(token, settings.secret_key, [settings.algorithm])
+        return jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
     except JWTError:
-        raise ResponseHandler.invalid_token('access')
+        raise HTTPException(status_code=401, detail="Token invalide")
 
 
 def get_current_user(token):
@@ -74,11 +104,36 @@ def get_current_user(token):
     return user.get('id')
 
 
+# def check_admin_role(
+#         token: HTTPAuthorizationCredentials = Depends(auth_scheme),
+#         db: Session = Depends(get_db)):
+#     user = get_token_payload(token.credentials)
+#     user_id = user.get('id')
+#     role_user = db.query(User).filter(User.id == user_id).first()
+#     if role_user.role != "admin":
+#         raise HTTPException(status_code=403, detail="Admin role required")
+
+
 def check_admin_role(
-        token: HTTPAuthorizationCredentials = Depends(auth_scheme),
-        db: Session = Depends(get_db)):
-    user = get_token_payload(token.credentials)
-    user_id = user.get('id')
-    role_user = db.query(User).filter(User.id == user_id).first()
-    if role_user.role != "admin":
+    token: HTTPAuthorizationCredentials = Depends(auth_scheme),
+    db: Session = Depends(get_db)
+):
+    if not token or not token.credentials:
+        raise HTTPException(status_code=401, detail="Token manquant")
+
+    payload = get_token_payload(token.credentials)
+    user_id = payload.get("id")
+    if not user_id:
+        raise HTTPException(status_code=401, detail="Token invalide")
+
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
+
+    if user.role != "admin":
         raise HTTPException(status_code=403, detail="Admin role required")
+
+    return user  # retourne l'objet User complet
+
+
+

@@ -90,6 +90,8 @@ class Product(Base):
     category_id = Column(Integer, ForeignKey("categories.id", ondelete="CASCADE"), nullable=False)
     category = relationship("Category", back_populates="products")
 
+
+
     # Relationship with gestionnaire (un utilisateur peut gérer plusieurs produits)
     gestionnaire_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
     gestionnaire = relationship("User", back_populates="produits_geres", foreign_keys=[gestionnaire_id])

@@ -150,15 +150,27 @@ async def create_first_admin(
 
 
 
+
 @router.get("/users", status_code=status.HTTP_200_OK)
 async def list_users(
     skip: int = 0,
     limit: int = 100,
     db: Session = Depends(get_db),
-    token: HTTPAuthorizationCredentials = Depends(check_admin_role)
+    current_admin = Depends(check_admin_role)
 ):
-    """Lister tous les utilisateurs (admin seulement)"""
     return await AdminService.list_all_users(db, skip, limit)
+
+
+
+# @router.get("/users", status_code=status.HTTP_200_OK)
+# async def list_users(
+#     skip: int = 0,
+#     limit: int = 100,
+#     db: Session = Depends(get_db),
+#     token: HTTPAuthorizationCredentials = Depends(check_admin_role)
+# ):
+#     """Lister tous les utilisateurs (admin seulement)"""
+#     return await AdminService.list_all_users(db, skip, limit)
 
 
 @router.post("/promote", status_code=status.HTTP_200_OK)

@@ -5,6 +5,14 @@ class ResponseHandler:
     @staticmethod
     def success(message, data=None):
         return {"message": message, "data": data}
+    
+    @staticmethod
+    def success_response(data=None, message="Success"):
+        return {
+            "status": "success",
+            "message": message,
+            "data": data
+        }
 
     @staticmethod
     def get_single_success(name, id, data):

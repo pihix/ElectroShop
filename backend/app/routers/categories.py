@@ -22,7 +22,6 @@ def get_all_categories(
 ):
     return CategoryService.get_all_categories(db, page, limit, search)
 
-
 # Get Category By ID
 @router.get(
     "/{category_id}",
@@ -34,7 +33,7 @@ def get_category(category_id: int, db: Session = Depends(get_db)):
 
 # Create New Category
 @router.post(
-    "/",
+    "/create",
     status_code=status.HTTP_201_CREATED,
     response_model=CategoryOut,
     dependencies=[Depends(check_admin_role)])

@@ -11,7 +11,7 @@ from app.db.database import get_db
 from app.models.models import User
 from app.core.security import verify_password
 from app.services.auth import get_user_token  # réutilise la fonction existante de génération de tokens
-
+from fastapi.encoders import jsonable_encoder
 
 
 class AdminService:
@@ -111,25 +111,73 @@ class AdminService:
             }
         )
     
+    # @staticmethod
+    # async def list_all_users(db: Session, skip: int = 0, limit: int = 100):
+    #     """Lister tous les utilisateurs avec leurs rôles"""
+        
+    #     users = db.query(User).offset(skip).limit(limit).all()
+        
+    #     users_data = []
+    #     for user in users:
+    #         users_data.append({
+    #             "id": user.id,
+    #             "username": user.username,
+    #             "email": user.email,
+    #             "full_name": user.full_name,
+    #             "role": user.role,
+    #             "is_active": user.is_active,
+    #             "created_at": user.created_at
+    #         })
+        
+    #     return ResponseHandler.success_response(data=users_data)
+
+
+    # @staticmethod
+    # async def list_all_users(db: Session, skip: int = 0, limit: int = 100):
+    #     try:
+    #         users = db.query(User).offset(skip).limit(limit).all()
+    #         users_data = [
+    #             {
+    #                 "id": user.id,
+    #                 "username": user.username,
+    #                 "email": user.email,
+    #                 "full_name": user.full_name,
+    #                 "role": user.role,
+    #                 "is_active": user.is_active,
+    #                 "created_at": user.created_at
+    #             }
+    #             for user in users
+    #         ]
+    #         return ResponseHandler.success_response(data=users_data)
+    #     except Exception as e:
+    #         print("Erreur list_all_users:", e)
+    #         raise HTTPException(status_code=500, detail="Erreur serveur interne")
+
     @staticmethod
     async def list_all_users(db: Session, skip: int = 0, limit: int = 100):
-        """Lister tous les utilisateurs avec leurs rôles"""
-        
-        users = db.query(User).offset(skip).limit(limit).all()
-        
-        users_data = []
-        for user in users:
-            users_data.append({
-                "id": user.id,
-                "username": user.username,
-                "email": user.email,
-                "full_name": user.full_name,
-                "role": user.role,
-                "is_active": user.is_active,
-                "created_at": user.created_at
-            })
-        
-        return ResponseHandler.success_response(data=users_data)
+        try:
+            users = db.query(User).offset(skip).limit(limit).all()
+            print("Users fetched from DB:", users)
+            users_data = [
+                {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                    "full_name": user.full_name,
+                    "role": user.role,
+                    "is_active": user.is_active,
+                    "created_at": str(user.created_at) if user.created_at else None,
+                    "has_password": user.password if user.password else False
+                }
+                for user in users
+            ]
+            print("Users data prepared:", users_data)
+            return ResponseHandler.success_response(data=users_data)
+        except Exception as e:
+            import traceback
+            traceback.print_exc()  # <-- affiche la vraie erreur
+            raise HTTPException(status_code=500, detail="Erreur serveur interne")
+
     
     @staticmethod
     async def create_first_admin(db: Session, username: str, email: str, full_name: str, password: str):
@@ -181,6 +229,38 @@ class AdminService:
         )
     
 
+    # @staticmethod
+    # async def login(
+    #     user_credentials: OAuth2PasswordRequestForm = Depends(),
+    #     db: Session = Depends(get_db)
+    # ):
+    #     # Vérifier que l'utilisateur existe
+    #     user = db.query(User).filter(User.username == user_credentials.username).first()
+    #     if not user:
+    #         raise HTTPException(
+    #             status_code=status.HTTP_403_FORBIDDEN,
+    #             detail="Invalid Credentials"
+    #         )
+
+    #     # Vérifier le mot de passe
+    #     if not verify_password(user_credentials.password, user.password):
+    #         raise HTTPException(
+    #             status_code=status.HTTP_403_FORBIDDEN,
+    #             detail="Invalid Credentials"
+    #         )
+
+    #     # Vérifier que c'est un admin
+    #     if user.role != "admin":
+    #         raise HTTPException(
+    #             status_code=status.HTTP_403_FORBIDDEN,
+    #             detail="User is not an admin"
+    #         )
+
+    #     # Générer et retourner les tokens comme pour les utilisateurs
+    #     return await get_user_token(id=user.id)
+
+
+
     @staticmethod
     async def login(
         user_credentials: OAuth2PasswordRequestForm = Depends(),
@@ -208,8 +288,9 @@ class AdminService:
                 detail="User is not an admin"
             )
 
-        # Générer et retourner les tokens comme pour les utilisateurs
-        return await get_user_token(id=user.id)
+        # ✅ Corrigé : on envoie aussi le rôle à get_user_token
+        return await get_user_token(id=user.id, role=user.role)
+
 
     
     

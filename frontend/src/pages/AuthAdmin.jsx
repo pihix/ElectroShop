@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser, signupUser } from "../api/AuthApiAdmin";
 import axios from "axios";
 
-const AuthPage = () => {
+const AuthAdmin = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({
     username: "",
@@ -54,7 +54,7 @@ const AuthPage = () => {
         // S'assurer qu'axios a l'header Authorization (au cas où)
         axios.defaults.headers.common["Authorization"] = `Bearer ${data.access_token}`;
 
-
+        console.log("Navigating to /admin");
         // Sauvegarde du token et rôle
         localStorage.setItem("token", data.access_token);
 
@@ -63,9 +63,12 @@ const AuthPage = () => {
 
         // Sauvegarde du username pour afficher dans le header
         localStorage.setItem("username", form.username);
+
+        console.log("role : "+ role)
         
         if (role === "admin") {
-          navigate("/admin");
+          
+          navigate("/dashbord");
         } else {
           navigate("/");
         }
@@ -175,4 +178,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default AuthAdmin;

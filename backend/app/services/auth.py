@@ -13,6 +13,18 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 class AuthService:
+    # @staticmethod
+    # async def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    #     user = db.query(User).filter(User.username == user_credentials.username).first()
+    #     if not user:
+    #         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials")
+
+    #     if not verify_password(user_credentials.password, user.password):
+    #         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials")
+
+    #     return await get_user_token(id=user.id)
+
+
     @staticmethod
     async def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
         user = db.query(User).filter(User.username == user_credentials.username).first()
@@ -22,7 +34,18 @@ class AuthService:
         if not verify_password(user_credentials.password, user.password):
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials")
 
-        return await get_user_token(id=user.id)
+        token_data = await get_user_token(id=user.id, role=user.role)
+
+        return {
+            **token_data.model_dump(),  # <- renvoie access_token, refresh_token, expires_in, token_type
+            "data": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+                "full_name": user.full_name,
+                "role": user.role
+            }
+        }
 
     @staticmethod
     async def signup(db: Session, user: Signup):
