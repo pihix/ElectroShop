@@ -25,11 +25,11 @@ export default function Clients() {
               <h4 className="clients-title">Gestion des Clients</h4>
               <p className="clients-subtitle">Liste complète des clients enregistrés</p>
             </Col>
-            <Col className="text-end">
+            {/* <Col className="text-end">
               <Button variant="primary" className="btn-add">
                 <i className="fas fa-plus me-2"></i>Ajouter un client
               </Button>
-            </Col>
+            </Col> */}
           </Row>
           
           {/* Filtres */}
