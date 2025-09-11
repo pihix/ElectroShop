@@ -50,7 +50,7 @@ jobs:
         working-directory: ${{ env.workdir }}
 
       - name: Run tests
-        run: npm test -- --watchAll=false
+        run: npm run test -- --run
         working-directory: ${{ env.workdir }}
 
 
