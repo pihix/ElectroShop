@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main, dev]
 
+env:
+  workdir: frontend
+
 jobs:
   lint:
     name: Lint
@@ -22,9 +25,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ${{ env.workdir }}
 
       - name: Run ESLint
         run: npm run lint
+        working-directory: ${{ env.workdir }}
 
 
   test:
@@ -42,9 +47,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ${{ env.workdir }}
 
       - name: Run tests
         run: npm test -- --watchAll=false
+        working-directory: ${{ env.workdir }}
 
 
   build:
@@ -63,6 +70,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ${{ env.workdir }}
 
       - name: Build React app
         run: npm run build
+        working-directory: ${{ env.workdir }}
