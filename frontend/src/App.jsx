@@ -152,6 +152,10 @@ function App() {
             }
           />
         </Routes>
+
+
+
+        
       </BrowserRouter>
     </CartProvider>
   );

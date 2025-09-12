@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import "../assets/css/CartPage.css";
 import { Link } from "react-router-dom";
+import PayPalCheckout from "../paiment/PayPalCheckout";
 import { CartContext } from "./CartContext";
 
 const CartPage = () => {
@@ -68,27 +69,27 @@ const CartPage = () => {
 
         {/* Résumé du panier */}
         <div className="cart-summary">
-          <h2>Résumé</h2>
-          <div className="summary-item">
-            <span>Articles :</span>
-            <span>{totalItems}</span>
-          </div>
-          <div className="summary-item">
-            <span>Sous-total :</span>
-            <span>{subTotal.toFixed(2)} €</span>
-          </div>
-          <div className="summary-item">
-            <span>Livraison :</span>
-            <span>{delivery === 0 ? "Gratuite" : `${delivery.toFixed(2)} €`}</span>
-          </div>
-          <div className="summary-item total">
-            <span>Total :</span>
-            <span>{total.toFixed(2)} €</span>
-          </div>
-          <Link to="/confirmation" className="checkout-btn">
-            Valider la commande
-          </Link>
+        <h2>Résumé</h2>
+        <div className="summary-item">
+          <span>Articles :</span>
+          <span>{totalItems}</span>
         </div>
+        <div className="summary-item">
+          <span>Sous-total :</span>
+          <span>{subTotal.toFixed(2)} €</span>
+        </div>
+        <div className="summary-item">
+          <span>Livraison :</span>
+          <span>{delivery === 0 ? "Gratuite" : `${delivery.toFixed(2)} €`}</span>
+        </div>
+        <div className="summary-item total">
+          <span>Total :</span>
+          <span>{total.toFixed(2)} €</span>
+        </div>
+
+        {/* Bouton PayPal */}
+        <PayPalCheckout />
+      </div>
       </div>
     </div>
   );
