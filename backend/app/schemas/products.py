@@ -82,6 +82,7 @@ from typing import List, Optional
 from datetime import datetime
 
 class ProductBase(BaseModel):
+    id: int
     title: str
     description: Optional[str] = None
     price: float
