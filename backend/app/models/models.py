@@ -15,6 +15,8 @@ class User(Base):
     full_name = Column(String, nullable=False)
     is_active = Column(Boolean, server_default="True", nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), nullable=False)
+    updated_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), onupdate=text("NOW()"), nullable=False)
+    version = Column(Integer, nullable=False, default=1)
 
     # New column for role
     role = Column(Enum("admin", "user", name="user_roles"), nullable=False, server_default="user")
@@ -36,6 +38,8 @@ class Commande(Base):
     statut = Column(Enum("en_attente", "confirmee", "expediee", "livree", "annulee", name="statut_commande"), 
                    nullable=False, server_default="en_attente")
     total_amount = Column(Float, nullable=False, default=0.0)
+    updated_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), onupdate=text("NOW()"), nullable=False)
+    version = Column(Integer, nullable=False, default=1)
 
     # Relationship with user
     user = relationship("User", back_populates="commandes")
@@ -85,6 +89,8 @@ class Product(Base):
     images = Column(ARRAY(String), nullable=False)
     is_published = Column(Boolean, server_default="True", nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), nullable=False)
+    updated_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), onupdate=text("NOW()"), nullable=False)
+    version = Column(Integer, nullable=False, default=1)
 
     # Relationship with category (un produit appartient à une catégorie)
     category_id = Column(Integer, ForeignKey("categories.id", ondelete="CASCADE"), nullable=False)
