@@ -4,6 +4,7 @@ import axios from 'axios';
 import Sidebar from './SideBarre';
 import Topbar from './TopBarre';
 import StatsCard from './StatCard';
+import '../../assets/css/Admin/TableauBord.css';
 
 const API_BASE = "http://localhost:8000";
 const TOKEN = localStorage.getItem("token");
@@ -19,15 +20,10 @@ export default function TableauBord() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // 🔹 Récupération des clients
         const clientsRes = await axios.get(`${API_BASE}/users`, {
           headers: { Authorization: `Bearer ${TOKEN}` },
         });
-
-        // 🔹 Récupération des produits
         const produitsRes = await axios.get(`${API_BASE}/products?page=1&limit=1000`);
-
-        // 🔹 Récupération des commandes
         const commandesRes = await axios.get(`${API_BASE}/orders`, {
           headers: { Authorization: `Bearer ${TOKEN}` },
         });
@@ -58,11 +54,11 @@ export default function TableauBord() {
       <Sidebar />
       <div className="flex-grow-1 overflow-auto" style={{ maxHeight: '100vh' }}>
         <Topbar />
-        <Container fluid className="mt-4">
-          <Row className="g-4 mb-4">
+        <Container fluid className="mt-4 tableau-bord">
+          <Row className="g-4 mb-4 fade-in">
             <Col>
-              <h4 className="mb-0">Tableau de Bord</h4>
-              <p className="text-muted mb-0">Aperçu des activités et statistiques</p>
+              <h4 className="dashboard-title">📊 Tableau de Bord</h4>
+              <p className="text-muted subtitle">Aperçu des activités et statistiques</p>
             </Col>
           </Row>
 
@@ -73,7 +69,7 @@ export default function TableauBord() {
               </Col>
             ) : (
               statCards.map((stat, index) => (
-                <Col key={index} xl={3} lg={6} md={6}>
+                <Col key={index} xl={3} lg={6} md={6} className="fade-in">
                   <StatsCard
                     title={stat.title}
                     value={stat.value}
@@ -87,14 +83,14 @@ export default function TableauBord() {
 
           <Row className="g-4">
             <Col xl={8}>
-              <Card className="border-0 shadow-sm">
+              <Card className="border-0 shadow-sm card-hover">
                 <Card.Header className="bg-white border-0">
-                  <h5 className="mb-0">Activité Récente</h5>
+                  <h5 className="mb-0 section-title">📈 Activité Récente</h5>
                 </Card.Header>
                 <Card.Body>
-                  <div className="p-4 text-center">
+                  <div className="chart-placeholder">
                     <p className="text-muted">Graphique d'activité</p>
-                    <div className="bg-light rounded p-5">
+                    <div className="graph-area">
                       Espace réservé pour les graphiques ou données statistiques
                     </div>
                   </div>
@@ -103,17 +99,17 @@ export default function TableauBord() {
             </Col>
 
             <Col xl={4}>
-              <Card className="border-0 shadow-sm">
+              <Card className="border-0 shadow-sm card-hover">
                 <Card.Header className="bg-white border-0">
-                  <h5 className="mb-0">Les Récentes Commandes</h5>
+                  <h5 className="mb-0 section-title">🛒 Récentes Commandes</h5>
                 </Card.Header>
                 <Card.Body>
                   <ul className="list-group list-group-flush">
                     {[1, 2, 3, 4, 5].map((item) => (
-                      <li key={item} className="list-group-item border-0 px-0">
+                      <li key={item} className="list-group-item border-0 px-0 order-item">
                         <div className="d-flex align-items-center">
-                          <div className="bg-light rounded-circle p-2 me-3">
-                            <div className="text-primary fw-bold">CD202{item}</div>
+                          <div className="order-badge">
+                            <div className="order-code">CD202{item}</div>
                           </div>
                           <div>
                             <div className="fw-medium">Client {item}</div>

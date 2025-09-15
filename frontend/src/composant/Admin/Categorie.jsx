@@ -4,6 +4,7 @@ import Sidebar from "./SideBarre";
 import Topbar from "./TopBarre";
 import CategorieData from "./CategorieData";
 import { getAllCategories, createCategory, updateCategory, deleteCategory } from "../../api/CategorieService";
+import "../../assets/css/Admin/Categorie.css";
 
 export default function Categorie() {
   const [categories, setCategories] = useState([]);
@@ -79,41 +80,35 @@ export default function Categorie() {
   };
 
   return (
-    <div className="d-flex">
+    <div className="categorie-page">
       <Sidebar />
-      <div className="flex-grow-1 overflow-auto" style={{ maxHeight: "100vh" }}>
+      <div className="categorie-content">
         <Topbar />
-        <Container fluid className="mt-4">
-          <Row className="mb-4">
-            <Col>
-              <h4 className="mb-0">Gestion des Catégories</h4>
-              <p className="text-muted mb-0">Liste complète des catégories</p>
-            </Col>
-            <Col className="text-end">
-              <Button variant="primary" onClick={handleAdd}>
-                Ajouter une catégorie
-              </Button>
-            </Col>
-          </Row>
+        <Container fluid>
+          <div className="categorie-header">
+            <div>
+              <h4>Gestion des Catégories</h4>
+              <p>Liste complète des catégories</p>
+            </div>
+            <Button className="btn-add" onClick={handleAdd}>
+              + Ajouter une catégorie
+            </Button>
+          </div>
 
-          <Row>
-            <Col>
-              <Card className="border-0 shadow-sm">
-                <Card.Body className="p-0">
-                  <CategorieData
-                    categories={categories}
-                    onView={handleView}
-                    onEdit={handleEdit}
-                    onDelete={handleDelete}
-                  />
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+          <Card className="categorie-card">
+            <Card.Body className="p-0">
+              <CategorieData
+                categories={categories}
+                onView={handleView}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            </Card.Body>
+          </Card>
         </Container>
 
         {(modalType === "add" || modalType === "edit") && selectedCategory && (
-          <Modal show={showModal} onHide={handleClose}>
+          <Modal show={showModal} onHide={handleClose} centered>
             <Modal.Header closeButton>
               <Modal.Title>
                 {modalType === "add" ? "Ajouter une catégorie" : "Modifier la catégorie"}
@@ -128,6 +123,7 @@ export default function Categorie() {
                     name="name"
                     value={selectedCategory.name}
                     onChange={handleChange}
+                    placeholder="Entrez le nom de la catégorie"
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -138,6 +134,7 @@ export default function Categorie() {
                     name="description"
                     value={selectedCategory.description}
                     onChange={handleChange}
+                    placeholder="Entrez une description"
                   />
                 </Form.Group>
               </Form>
@@ -154,13 +151,13 @@ export default function Categorie() {
         )}
 
         {modalType === "view" && selectedCategory && (
-          <Modal show={showModal} onHide={handleClose}>
+          <Modal show={showModal} onHide={handleClose} centered>
             <Modal.Header closeButton>
               <Modal.Title>Détails de la catégorie</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <p><b>Nom :</b> {selectedCategory.name}</p>
-              {/* <p><b>Description :</b> {selectedCategory.description}</p> */}
+              <p><b>Description :</b> {selectedCategory.description || "Aucune description"}</p>
             </Modal.Body>
           </Modal>
         )}

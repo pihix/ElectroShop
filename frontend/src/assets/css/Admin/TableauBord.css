@@ -1,0 +1,76 @@
+/* Animations douces */
+.fade-in {
+  animation: fadeInUp 0.6s ease-in-out;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Titres */
+.dashboard-title {
+  font-weight: 700;
+  color: #2c3e50;
+}
+.subtitle {
+  font-size: 0.95rem;
+}
+
+/* Cartes avec effet hover */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Placeholder graphique */
+.chart-placeholder {
+  text-align: center;
+}
+.graph-area {
+  background: linear-gradient(135deg, #f0f4f8, #e4ebf5);
+  border-radius: 12px;
+  padding: 50px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  transition: background 0.3s ease;
+}
+.graph-area:hover {
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+}
+
+/* Récentes commandes */
+.order-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s ease;
+}
+.order-item:hover {
+  background-color: #f8f9fa;
+}
+.order-badge {
+  background: #f0f4f8;
+  border-radius: 50%;
+  padding: 12px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-code {
+  color: #007bff;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.section-title {
+  font-weight: 600;
+  color: #34495e;
+}

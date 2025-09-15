@@ -1,0 +1,72 @@
+/* Sidebar Container */
+.sidebar {
+  width: 250px;
+  background: #ffffff;
+  border-right: 1px solid #e6e6e6;
+  transition: all 0.3s ease;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  background: linear-gradient(135deg, #0d6efd, #0a58ca);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Nav Section Titles */
+.sidebar-section {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #6c757d;
+  margin: 20px 0 8px 15px;
+  letter-spacing: 0.5px;
+}
+
+/* Sidebar Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #495057 !important;
+  border-radius: 6px;
+  margin: 3px 10px;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.sidebar-link:hover {
+  background: #f1f5ff;
+  color: #0d6efd !important;
+  transform: translateX(5px);
+}
+
+/* Active Link */
+.sidebar-link.active,
+.sidebar-link:focus,
+.sidebar-link:active {
+  background: #e7f0ff;
+  color: #0d6efd !important;
+  font-weight: 600;
+  border-left: 4px solid #0d6efd;
+  padding-left: 16px;
+}
+
+/* Icons */
+.sidebar-link svg {
+  font-size: 1.2rem;
+  min-width: 22px;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-link:hover svg {
+  transform: scale(1.1);
+}

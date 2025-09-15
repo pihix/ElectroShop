@@ -4,6 +4,7 @@ import axios from "axios";
 import Sidebar from "./SideBarre";
 import Topbar from "./TopBarre";
 import ProductData from "./ProductData";
+import "../../assets/css/Admin/Produits.css"; 
 
 const API_BASE = "http://localhost:8000";
 const TOKEN = localStorage.getItem("token");
@@ -27,7 +28,6 @@ export default function Produits() {
     images: [],
   };
 
-  // Charger la liste depuis API
   useEffect(() => {
     fetchProducts();
     fetchCategories();
@@ -102,83 +102,63 @@ export default function Produits() {
     }
   };
 
-  console.log("Produits chargés :", products);
-
-const handleSave = async () => {
-  // Vérification des champs obligatoires
-  if (!selectedProduct.nom || !selectedProduct.categorie) {
-    alert("Veuillez remplir le nom et la catégorie.");
-    return;
-  }
-
-  // Récupération de l'objet catégorie depuis la liste
-  const category = categories.find(cat => cat.name === selectedProduct.categorie);
-  if (!category) {
-    alert("Veuillez sélectionner une catégorie valide !");
-    return;
-  }
-
-  // S'assurer qu'il y a au moins une image
- let imagesArray = [];
-
-if (selectedProduct.images && selectedProduct.images.length > 0) {
-  imagesArray = selectedProduct.images.map(f => {
-    // si c'est un string (URL), garder tel quel
-    if (typeof f === "string") return f;
-    // si c'est un File, remplacer par URL ou nom temporaire
-    return f.url || f.name || "default.jpg";
-  });
-} else if (selectedProduct.image_url) {
-  imagesArray = [selectedProduct.image_url];
-} else {
-  imagesArray = ["default.jpg"];
-}
-
-const payload = {
-  title: selectedProduct.nom,
-  description: selectedProduct.description || "Aucune description",
-  price: parseFloat(selectedProduct.prix) || 0,
-  stock: parseInt(selectedProduct.qte) || 0,
-  brand: selectedProduct.marque || "Inconnu",
-  thumbnail: imagesArray[0],
-  images: imagesArray,
-  category_id: category.id,
-  discount_percentage: parseFloat(selectedProduct.discount_percentage) || 0,
-  rating: parseFloat(selectedProduct.rating) || 0,
-  is_published: Boolean(selectedProduct.is_active),
-};
-
-console.log("Payload envoyé:", payload); // utile pour debug
-
-
-
-  try {
-    if (modalType === "edit") {
-      console.log("TOKEN:", TOKEN);
-
-      
-
-      await axios.put(`${API_BASE}/products/${selectedProduct.id}`, payload, {
-        headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
-      });
-    } else if (modalType === "add") {
-
-      await axios.post(`${API_BASE}/products`, payload, {
-        headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
-      });
+  const handleSave = async () => {
+    if (!selectedProduct.nom || !selectedProduct.categorie) {
+      alert("Veuillez remplir le nom et la catégorie.");
+      return;
     }
 
-    fetchProducts();  // Recharge la liste
-    handleClose();    // Ferme le modal
-  } catch (err) {
-    console.error("Backend response:", err.response.data);
-    console.error("Erreur création/modification produit :", err);
-    alert("Erreur lors de l'opération. Vérifiez la console.");
-  }
-};
+    const category = categories.find((cat) => cat.name === selectedProduct.categorie);
+    if (!category) {
+      alert("Veuillez sélectionner une catégorie valide !");
+      return;
+    }
 
+    let imagesArray = [];
+    if (selectedProduct.images && selectedProduct.images.length > 0) {
+      imagesArray = selectedProduct.images.map((f) =>
+        typeof f === "string" ? f : f.url || f.name || "default.jpg"
+      );
+    } else if (selectedProduct.image_url) {
+      imagesArray = [selectedProduct.image_url];
+    } else {
+      imagesArray = ["default.jpg"];
+    }
 
-const handleChange = (e) => {
+    const payload = {
+      title: selectedProduct.nom,
+      description: selectedProduct.description || "Aucune description",
+      price: parseFloat(selectedProduct.prix) || 0,
+      stock: parseInt(selectedProduct.qte) || 0,
+      brand: selectedProduct.marque || "Inconnu",
+      thumbnail: imagesArray[0],
+      images: imagesArray,
+      category_id: category.id,
+      discount_percentage: parseFloat(selectedProduct.discount_percentage) || 0,
+      rating: parseFloat(selectedProduct.rating) || 0,
+      is_published: Boolean(selectedProduct.is_active),
+    };
+
+    try {
+      if (modalType === "edit") {
+        await axios.put(`${API_BASE}/products/${selectedProduct.id}`, payload, {
+          headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
+        });
+      } else if (modalType === "add") {
+        await axios.post(`${API_BASE}/products`, payload, {
+          headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
+        });
+      }
+
+      fetchProducts();
+      handleClose();
+    } catch (err) {
+      console.error("Erreur création/modification produit :", err);
+      alert("Erreur lors de l'opération. Vérifiez la console.");
+    }
+  };
+
+  const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setSelectedProduct({
       ...selectedProduct,
@@ -187,18 +167,18 @@ const handleChange = (e) => {
   };
 
   return (
-    <div className="d-flex">
+    <div className="d-flex produits-container">
       <Sidebar />
-      <div className="flex-grow-1 overflow-auto" style={{ maxHeight: "100vh" }}>
+      <div className="flex-grow-1 overflow-auto produits-content">
         <Topbar />
         <Container fluid className="mt-4">
-          <Row className="mb-4">
+          <Row className="mb-4 produits-header">
             <Col>
-              <h4 className="mb-0">Gestion des Produits</h4>
-              <p className="text-muted mb-0">Liste complète des produits enregistrés</p>
+              <h4 className="page-title">🛍️ Gestion des Produits</h4>
+              <p className="text-muted">Liste complète des produits enregistrés</p>
             </Col>
             <Col className="text-end">
-              <Button variant="primary" onClick={handleAdd}>
+              <Button variant="primary" onClick={handleAdd} className="add-btn">
                 <i className="fas fa-plus me-2"></i>Ajouter un produit
               </Button>
             </Col>
@@ -206,7 +186,7 @@ const handleChange = (e) => {
 
           <Row>
             <Col>
-              <Card className="border-0 shadow-sm">
+              <Card className="border-0 shadow-sm produits-card">
                 <Card.Body className="p-0">
                   <ProductData
                     products={products}
@@ -220,50 +200,49 @@ const handleChange = (e) => {
           </Row>
         </Container>
 
-       
+        {/* Modal View */}
         {modalType === "view" && selectedProduct && (
-  <Modal show={showModal} onHide={handleClose} size="lg" centered>
-    <Modal.Header closeButton>
-      <Modal.Title>Détails du produit</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <div className="d-flex flex-wrap gap-3">
-        <div style={{ flex: "0 0 250px" }}>
-          <img
-            src={selectedProduct.image_url || "default.jpg"}
-            alt={selectedProduct.nom}
-            style={{ width: "100%", borderRadius: "8px", objectFit: "cover" }}
-          />
-        </div>
-        <div className="flex-grow-1">
-          <h4>{selectedProduct.nom}</h4>
-          <p><b>Prix :</b> {selectedProduct.prix} €</p>
-          <p><b>Quantité :</b> {selectedProduct.qte}</p>
-          <p><b>Catégorie :</b> {selectedProduct.categorie}</p>
-          <p><b>Marque :</b> {selectedProduct.marque}</p>
-          <p><b>Description :</b> {selectedProduct.description || "Aucune description"}</p>
-          <p>
-            <b>Statut :</b>{" "}
-            <Badge bg={selectedProduct.is_active ? "success" : "secondary"} className="rounded-pill">
-              {selectedProduct.is_active ? "Actif" : "Inactif"}
-            </Badge>
-          </p>
-          <p><b>Remise :</b> {selectedProduct.discount_percentage}%</p>
-          <p><b>Note :</b> {selectedProduct.rating}/5</p>
-        </div>
-      </div>
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleClose}>Fermer</Button>
-    </Modal.Footer>
-  </Modal>
-)}
-
+          <Modal show={showModal} onHide={handleClose} size="lg" centered>
+            <Modal.Header closeButton className="modal-header-custom">
+              <Modal.Title>Détails du produit</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="d-flex flex-wrap gap-3">
+                <div className="image-box">
+                  <img
+                    src={selectedProduct.image_url || "default.jpg"}
+                    alt={selectedProduct.nom}
+                    className="product-img"
+                  />
+                </div>
+                <div className="flex-grow-1">
+                  <h4 className="mb-3">{selectedProduct.nom}</h4>
+                  <p><b>Prix :</b> {selectedProduct.prix} €</p>
+                  <p><b>Quantité :</b> {selectedProduct.qte}</p>
+                  <p><b>Catégorie :</b> {selectedProduct.categorie}</p>
+                  <p><b>Marque :</b> {selectedProduct.marque}</p>
+                  <p><b>Description :</b> {selectedProduct.description || "Aucune description"}</p>
+                  <p>
+                    <b>Statut :</b>{" "}
+                    <Badge bg={selectedProduct.is_active ? "success" : "secondary"} className="rounded-pill">
+                      {selectedProduct.is_active ? "Actif" : "Inactif"}
+                    </Badge>
+                  </p>
+                  <p><b>Remise :</b> {selectedProduct.discount_percentage || 0}%</p>
+                  <p><b>Note :</b> {selectedProduct.rating || 0}/5</p>
+                </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>Fermer</Button>
+            </Modal.Footer>
+          </Modal>
+        )}
 
         {/* Modal Add/Edit */}
         {(modalType === "add" || modalType === "edit") && selectedProduct && (
-          <Modal show={showModal} onHide={handleClose} size="lg">
-            <Modal.Header closeButton>
+          <Modal show={showModal} onHide={handleClose} size="lg" centered>
+            <Modal.Header closeButton className="modal-header-custom">
               <Modal.Title>{modalType === "edit" ? "Modifier le produit" : "Ajouter un produit"}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -374,9 +353,7 @@ const handleChange = (e) => {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Annuler
-              </Button>
+              <Button variant="secondary" onClick={handleClose}>Annuler</Button>
               <Button variant="primary" onClick={handleSave}>
                 {modalType === "edit" ? "Modifier" : "Enregistrer"}
               </Button>

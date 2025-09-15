@@ -1,0 +1,72 @@
+/* Conteneur principal */
+.commandes-container {
+  background: #f8f9fb;
+  min-height: 100vh;
+}
+
+.commandes-content {
+  max-height: 100vh;
+  padding-bottom: 20px;
+}
+
+/* En-tête */
+.header-section {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+/* Card */
+.custom-card {
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Modal */
+.modal-header-custom {
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  color: #fff;
+}
+
+.details-container {
+  background: #fdfdfd;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Boîte de détails */
+.detail-box {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Statuts */
+.status-badge {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.status-badge.active {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.status-badge.inactive {
+  background-color: #6c757d;
+  color: #fff;
+}
