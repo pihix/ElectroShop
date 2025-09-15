@@ -94,6 +94,7 @@ class ProductBase(BaseModel):
     images: List[str]
     is_published: bool = True
     category_id: int
+    version: int
 
     @validator("discount_percentage")
     def validate_discount_percentage(cls, v):
@@ -116,6 +117,7 @@ class ProductUpdate(BaseModel):
     discount_percentage: Optional[float] = 0.0
     rating: Optional[float] = 0.0
     is_published: Optional[bool] = True
+    version: int  # version attendue par le client
 
 
 
