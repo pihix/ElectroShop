@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../assets/css/AuthPage.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser, signupUser } from "../api/AuthApiAdmin";
 import axios from "axios";
+import { AuthContext } from "../composant/AuthContext.jsx";
 
 const AuthAdmin = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,9 +17,9 @@ const AuthAdmin = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-  
+  const { setToken, setRole } = useContext(AuthContext);
 
-  // Si token déjà présent (rafraîchissement de page), on configure axios
+  // Configure axios si token déjà présent (rafraîchissement de page)
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -42,39 +43,36 @@ const AuthAdmin = () => {
 
     try {
       if (isLogin) {
-        
+        // --------------------
+        // LOGIN ADMIN
+        // --------------------
         const data = await loginUser(form.username, form.password);
+        const token = data.access_token;
+        const role = data.data?.role ?? "admin";
 
-        // Sauvegarde du token
-        localStorage.setItem("token", data.access_token);
+        // 🔥 Mise à jour immédiate du contexte
+        setToken(token);
+        setRole(role);
 
-        const type = data.data?.role ?? "admin";
-        localStorage.setItem("role", type);
+        // Configurer axios pour les prochaines requêtes
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        // S'assurer qu'axios a l'header Authorization (au cas où)
-        axios.defaults.headers.common["Authorization"] = `Bearer ${data.access_token}`;
-
-        console.log("Navigating to /admin");
-        // Sauvegarde du token et rôle
-        localStorage.setItem("token", data.access_token);
-
-        const role= data.data?.role ?? "admin";
+        // Sauvegarde dans localStorage (persistance après refresh)
+        localStorage.setItem("token", token);
         localStorage.setItem("role", role);
-
-        // Sauvegarde du username pour afficher dans le header
         localStorage.setItem("username", form.username);
 
-        console.log("role : "+ role)
-        
+        console.log("role :", role);
+
+        // Redirection
         if (role === "admin") {
-          
           navigate("/dashbord");
         } else {
           navigate("/");
         }
       } else {
         // --------------------
-        // SIGNUP
+        // SIGNUP ADMIN
         // --------------------
         await signupUser({
           username: form.username,
@@ -83,13 +81,11 @@ const AuthAdmin = () => {
           password: form.password,
         });
 
-        alert("Compte créé avec succès 🎉 — Connecte-toi maintenant");
+        alert("Compte admin créé avec succès 🎉 — Connecte-toi maintenant");
         setIsLogin(true);
-        // Optionnel : vider le password
-        setForm({ ...form, password: "" });
+        setForm({ ...form, password: "" }); // Reset mot de passe
       }
     } catch (err) {
-      // err peut être { detail: "..."} ou un objet plus complexe
       const message =
         err?.detail ??
         err?.message ??
@@ -163,13 +159,23 @@ const AuthAdmin = () => {
           </div>
 
           <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? (isLogin ? "Connexion..." : "Création...") : isLogin ? "Se connecter" : "Créer mon compte"}
+            {loading
+              ? isLogin
+                ? "Connexion..."
+                : "Création..."
+              : isLogin
+              ? "Se connecter"
+              : "Créer un compte"}
           </button>
         </form>
 
         <p className="toggle-text">
           {isLogin ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
-          <span onClick={toggleForm} className="toggle-link" style={{ cursor: "pointer" }}>
+          <span
+            onClick={toggleForm}
+            className="toggle-link"
+            style={{ cursor: "pointer" }}
+          >
             {isLogin ? "Créer un compte" : "Se connecter"}
           </span>
         </p>

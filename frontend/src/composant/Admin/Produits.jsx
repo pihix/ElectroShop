@@ -17,6 +17,7 @@ export default function Produits() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const emptyProduct = {
+    id: 0,
     nom: "",
     prix: "",
     qte: "",
@@ -126,6 +127,7 @@ export default function Produits() {
     }
 
     const payload = {
+      id: Math.floor(Math.random() * 1_000_000_000),
       title: selectedProduct.nom,
       description: selectedProduct.description || "Aucune description",
       price: parseFloat(selectedProduct.prix) || 0,

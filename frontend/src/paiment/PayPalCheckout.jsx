@@ -2,9 +2,11 @@
 import React, { useContext, useMemo } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { CartContext } from "../composant/CartContext"; // Vérifie le chemin
+import { useNavigate } from "react-router-dom";
 
 const PayPalCheckout = () => {
   const { cart, setCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   // Calcul du total
   const total = useMemo(() => {
@@ -35,6 +37,7 @@ const PayPalCheckout = () => {
           console.log("Paiement réussi :", order);
           alert("Paiement simulé avec succès !");
           setCart([]); // Vider le panier après paiement
+          navigate("/confirmation")
         }}
         onError={(err) => {
           console.error("Erreur PayPal :", err);

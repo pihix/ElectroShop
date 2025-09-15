@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../assets/css/AuthPage.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser, signupUser } from "../api/AuthApi";
 import axios from "axios";
+import { AuthContext } from "../composant/AuthContext.jsx";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,7 +17,7 @@ const AuthPage = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-  
+  const { setToken, setRole } = useContext(AuthContext);
 
   // Si token déjà présent (rafraîchissement de page), on configure axios
   useEffect(() => {
@@ -42,34 +43,27 @@ const AuthPage = () => {
 
     try {
       if (isLogin) {
-        
+        // --------------------
+        // LOGIN
+        // --------------------
         const data = await loginUser(form.username, form.password);
+        const token = data.access_token;
+        const role = data.data?.role ?? "user";
 
-        // Sauvegarde du token
-        localStorage.setItem("token", data.access_token);
+        // 🔥 Mise à jour du contexte (important pour éviter le refresh manuel)
+        setToken(token);
+        setRole(role);
 
-        // Sauvegarde du role s'il est présent (sinon on met "user" par défaut)
-         const type = data.data?.role ?? "user";
-        localStorage.setItem("role", type);
+        // Configurer axios pour les prochaines requêtes
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        // S'assurer qu'axios a l'header Authorization (au cas où)
-        axios.defaults.headers.common["Authorization"] = `Bearer ${data.access_token}`;
-
-
-        // Sauvegarde du token et rôle
-        localStorage.setItem("token", data.access_token);
-
-        const role= data.data?.role ?? "user";
+        // Sauvegarder aussi dans localStorage (pour persistance après refresh)
+        localStorage.setItem("token", token);
         localStorage.setItem("role", role);
-
-        // Sauvegarde du username pour afficher dans le header
         localStorage.setItem("username", form.username);
-        
-        if (role === "admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
+
+        // Redirection selon le rôle
+        navigate(role === "admin" ? "/admin" : "/");
       } else {
         // --------------------
         // SIGNUP
@@ -83,11 +77,9 @@ const AuthPage = () => {
 
         alert("Compte créé avec succès 🎉 — Connecte-toi maintenant");
         setIsLogin(true);
-        // Optionnel : vider le password
-        setForm({ ...form, password: "" });
+        setForm({ ...form, password: "" }); // Reset du mot de passe après signup
       }
     } catch (err) {
-      // err peut être { detail: "..."} ou un objet plus complexe
       const message =
         err?.detail ??
         err?.message ??
@@ -161,13 +153,23 @@ const AuthPage = () => {
           </div>
 
           <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? (isLogin ? "Connexion..." : "Création...") : isLogin ? "Se connecter" : "Créer mon compte"}
+            {loading
+              ? isLogin
+                ? "Connexion..."
+                : "Création..."
+              : isLogin
+              ? "Se connecter"
+              : "Créer mon compte"}
           </button>
         </form>
 
         <p className="toggle-text">
           {isLogin ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
-          <span onClick={toggleForm} className="toggle-link" style={{ cursor: "pointer" }}>
+          <span
+            onClick={toggleForm}
+            className="toggle-link"
+            style={{ cursor: "pointer" }}
+          >
             {isLogin ? "Créer un compte" : "Se connecter"}
           </span>
         </p>

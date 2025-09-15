@@ -43,10 +43,10 @@ export default function Topbar() {
           {/* Right Menu */}
           <Nav className="ms-auto align-items-center">
             {/* Notifications */}
-            <Nav.Link className="position-relative notification-icon">
+            {/* <Nav.Link className="position-relative notification-icon">
               <FaBell size={20} />
               <span className="badge-notif">3</span>
-            </Nav.Link>
+            </Nav.Link> */}
 
             {/* User Dropdown */}
             <Dropdown align="end">
@@ -74,7 +74,7 @@ export default function Topbar() {
                 )}
               </Dropdown.Toggle>
 
-              <Dropdown.Menu className="shadow-sm user-menu">
+              {/* <Dropdown.Menu className="shadow-sm user-menu">
                 <Dropdown.Item href="#">
                   <FaUserCircle className="me-2" /> Mon profil
                 </Dropdown.Item>
@@ -84,7 +84,7 @@ export default function Topbar() {
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="#">Déconnexion</Dropdown.Item>
-              </Dropdown.Menu>
+              </Dropdown.Menu> */}
             </Dropdown>
           </Nav>
         </Navbar.Collapse>

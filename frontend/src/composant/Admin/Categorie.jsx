@@ -157,7 +157,7 @@ export default function Categorie() {
             </Modal.Header>
             <Modal.Body>
               <p><b>Nom :</b> {selectedCategory.name}</p>
-              <p><b>Description :</b> {selectedCategory.description || "Aucune description"}</p>
+              {/* <p><b>Description :</b> {selectedCategory.description || "Aucune description"}</p> */}
             </Modal.Body>
           </Modal>
         )}

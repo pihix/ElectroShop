@@ -204,24 +204,28 @@ const handleAddToCart = (quantity = 1) => {
 
   // UI render helpers
   const renderProductCard = (product) => (
-    <div key={product.id} className="product-card" onClick={() => openModal(product)}>
-      <div className="product-image">
-        <img
-          src={product.image || product.thumbnail || "/placeholder.jpg"}
-          alt={product.title}
-          onError={onImgError}
-        />
-      </div>
-      <h3 className="product-name">{product.title}</h3>
-      <div className="price-container">
-        <span className="original-price">{product.old_price ? `${product.old_price} €` : ""}</span>
-        <span className="new-price">{product.price} €</span>
-      </div>
-      {product.discount_percentage > 0 && (
-        <div className="saving">-{product.discount_percentage}%</div>
-      )}
+  <div key={product.id} className="product-card" onClick={() => openModal(product)}>
+    <div className="product-image">
+      <img
+        src={product.image || product.thumbnail || "/placeholder.jpg"}
+        alt={product.title}
+        onError={onImgError}
+      />
     </div>
-  );
+    <h3 className="product-name">{product.title}</h3>
+    <p className="product-description">
+      {product.description ? product.description.slice(0, 100) + "..." : ""}
+    </p>
+    <div className="price-container">
+      <span className="original-price">{product.old_price ? `${product.old_price} €` : ""}</span>
+      <span className="new-price">{product.price} €</span>
+    </div>
+    {product.discount_percentage > 0 && (
+      <div className="saving">-{product.discount_percentage}%</div>
+    )}
+  </div>
+);
+
 
   return (
     <div className="smartphone-deals">
@@ -297,7 +301,7 @@ const handleAddToCart = (quantity = 1) => {
 
 
                 {/* Thumbnails (si plusieurs images) */}
-                {selectedProduct.images && selectedProduct.images.length > 0 && (
+                {/* {selectedProduct.images && selectedProduct.images.length > 0 && (
                   <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
                     {selectedProduct.images.map((imgUrl, idx) => (
                       <img
@@ -310,7 +314,7 @@ const handleAddToCart = (quantity = 1) => {
                       />
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>

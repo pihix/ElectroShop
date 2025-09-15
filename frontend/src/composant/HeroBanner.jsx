@@ -1,68 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/HeroBanner.css";
+import smartWatch from "../assets/images/smartWatch.png";
+import laptop from "../assets/images/Ordinateur.png";
+import phone from "../assets/images/smartPhone.png";
 
-import { useState, useEffect } from 'react';
+const slides = [
+  {
+    subtitle: "Les meilleures offres en ligne sur les appareils connectés!",
+    title: "PORTABLE & MONTRE INTELLIGENTE.",
+    offer: "JUSQU'À 80% DE RÉDUCTION",
+    image: smartWatch,
+  },
+  {
+    subtitle: "Profitez des prix incroyables sur les ordinateurs!",
+    title: "ORDINATEURS PORTABLES & ACCESSOIRES.",
+    offer: "JUSQU'À 60% DE RÉDUCTION",
+    image: laptop,
+  },
+  {
+    subtitle: "La nouvelle génération de smartphones est là!",
+    title: "SMARTPHONES & GADGETS.",
+    offer: "JUSQU'À 70% DE RÉDUCTION",
+    image: phone,
+  },
+];
 
 const HeroBanner = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentIndex, setCurrentIndex] = useState(0);
 
+  // ⏳ changement automatique toutes les 5s
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
+      setCurrentIndex((prevIndex) =>
+        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const formatTime = (date) => {
-    return date.toLocaleTimeString('en-US', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    });
-  };
-
   return (
-    <div className="smart-watch-promo-full">
-      <div className="promo-container">
-        <div className="promo-text">
-          <div className="main-text">Meilleures offres en ligne sur des appareils electroniques</div>
-          <div className="sub-text">APPAREIL PORTABLE & ACCESSOIRES.</div>
-          <div className="discount-text">Jusqu'à 80 % de réduction</div>
-        </div>
-        
-        <div className="promo-display">
-          <div className="time-display">{formatTime(currentTime)}</div>
-          <div className="indicators">
-            <span className="indicator active">D</span>
-            <span className="separator">/</span>
-            <span className="indicator">A</span>
-            <span className="separator">/</span>
-            <san className="indicator">T</san>
-            <span className="separator">/</span>
-            <span className="indicator">E</span>
-            <span className="separator">/</span>
-            <span className="indicator">L</span>
-            <span className="separator">/</span>
-            <span className="indicator">I</span>
-            <span className="separator">/</span>
-            <span className="indicator">N</span>
-            <span className="separator">/</span>
-            <span className="indicator">E</span>
-          </div>
-          <div className="progress-section">
-            <div className="progress-text">20/09/25</div>
-            <div className="progress-bar">
-              <div className="progress-fill"></div>
-            </div>
-          </div>
-          <div className="product-count">Code reduction : 234</div>
-        </div>
+    <section className="hero-banner">
+      <div className="hero-text">
+        <p className="subtitle">{slides[currentIndex].subtitle}</p>
+        <h1 className="title">{slides[currentIndex].title}</h1>
+        <p className="offer">{slides[currentIndex].offer}</p>
       </div>
-    </div>
+
+      <div className="hero-img">
+        <img
+          src={slides[currentIndex].image}
+          alt="Promo"
+          className="animated-img"
+        />
+      </div>
+
+      {/* Indicateurs (petits points) */}
+      {/* <div className="indicators">
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            className={index === currentIndex ? "dot active" : "dot"}
+            onClick={() => setCurrentIndex(index)}
+          ></span>
+        ))}
+      </div> */}
+    </section>
   );
 };
-
 
 export default HeroBanner;

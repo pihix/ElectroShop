@@ -16,14 +16,15 @@ function TopBarre() {
       {/* Droite */}
       <div className="right">
         <div className="info">
+          <FaTruck className="icon" />
           <p>
             Livraison gratuite à <span>38100</span>
           </p>
-          <FaTruck className="icon" />
+          
         </div>
         <div className="info">
-          <p>+33 744816334</p>
           <FaPhone className="icon" />
+          <p>+33 744816334</p>
         </div>
       </div>
     </div>

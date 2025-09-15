@@ -24,7 +24,8 @@
 }
 
 .top-barre .icon {
-  color: #008ecc; /* couleur des icônes */
+  color: #008ecc; 
+  margin-top: -15px;
 }
 
 .top-barre span {
