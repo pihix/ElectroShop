@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState } from "react";
 // import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 // import "../assets/css/CartPage.css";
@@ -167,6 +168,19 @@ const CartPage = () => {
     setCart(cart.filter((item) => item.id !== id));
   };
 
+=======
+import React, { useContext } from "react";
+import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
+import "../assets/css/CartPage.css";
+import { Link } from "react-router-dom";
+import PayPalCheckout from "../paiment/PayPalCheckout";
+import { CartContext } from "./CartContext";
+
+const CartPage = () => {
+  const { cart, updateQuantity, removeFromCart } = useContext(CartContext);
+
+  // Calculs
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
   const subTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const delivery = 0;
@@ -181,6 +195,7 @@ const CartPage = () => {
           {cart.length === 0 ? (
             <p className="empty-cart">Votre panier est vide.</p>
           ) : (
+<<<<<<< HEAD
             cart.map((item) => (
               <div key={item.id} className="cart-product">
                 <img src={item.image} alt={item.name} className="product-image" />
@@ -194,13 +209,51 @@ const CartPage = () => {
                   </button>
                   <span>{item.quantity}</span>
                   <button onClick={() => increment(item.id)} className="qty-btn">
+=======
+            cart.map((item, index) => (
+              <div key={`${item.id}-${index}`} className="cart-product">
+                <img
+                  src={item.image || "/placeholder.jpg"}
+                  alt={item.name}
+                  className="product-image"
+                />
+                <div className="product-info">
+                  <span className="product-name">{item.name}</span>
+                  <span className="product-unit-price">
+                    {Number(item.price).toFixed(2)} €
+                  </span>
+                </div>
+                <div className="quantity-control">
+                  <button
+                    onClick={() =>
+                      updateQuantity(item.id, item.quantity > 1 ? item.quantity - 1 : 1)
+                    }
+                    className="qty-btn"
+                  >
+                    <FaMinus />
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    className="qty-btn"
+                  >
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
                     <FaPlus />
                   </button>
                 </div>
                 <span className="product-total">
+<<<<<<< HEAD
                   {(item.price * item.quantity).toFixed(2)} €
                 </span>
                 <button className="remove-btn" onClick={() => removeItem(item.id)}>
+=======
+                  {(Number(item.price) * item.quantity).toFixed(2)} €
+                </span>
+                <button
+                  className="remove-btn"
+                  onClick={() => removeFromCart(item.id)}
+                >
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
                   <FaTrash />
                 </button>
               </div>
@@ -210,6 +263,7 @@ const CartPage = () => {
 
         {/* Résumé du panier */}
         <div className="cart-summary">
+<<<<<<< HEAD
           <h2>Résumé</h2>
           <div className="summary-item">
             <span>Articles :</span>
@@ -231,6 +285,29 @@ const CartPage = () => {
             Valider la commande
           </Link>
         </div>
+=======
+        <h2>Résumé</h2>
+        <div className="summary-item">
+          <span>Articles :</span>
+          <span>{totalItems}</span>
+        </div>
+        <div className="summary-item">
+          <span>Sous-total :</span>
+          <span>{subTotal.toFixed(2)} €</span>
+        </div>
+        <div className="summary-item">
+          <span>Livraison :</span>
+          <span>{delivery === 0 ? "Gratuite" : `${delivery.toFixed(2)} €`}</span>
+        </div>
+        <div className="summary-item total">
+          <span>Total :</span>
+          <span>{total.toFixed(2)} €</span>
+        </div>
+
+        {/* Bouton PayPal */}
+        <PayPalCheckout />
+      </div>
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
       </div>
     </div>
   );

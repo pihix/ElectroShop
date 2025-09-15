@@ -1,4 +1,5 @@
 .top-barre {
+<<<<<<< HEAD
   width: 100%;                     
   background-color: #f3f9fb;         
   color: #222;                     
@@ -8,6 +9,17 @@
   align-items: center;             
   font-size: 14px;
   box-sizing: border-box;          
+=======
+  width: 100%;                     /* occupe toute la largeur */
+  background-color: #f3f9fb;          /* couleur de fond */
+  color: #222;                     /* texte blanc */
+  padding: 8px 20px;               /* espacement intérieur */
+  display: flex;                   /* flexbox */
+  justify-content: space-between;  /* gauche et droite espacés */
+  align-items: center;             /* alignement vertical */
+  font-size: 14px;
+  box-sizing: border-box;          /* padding inclus dans width */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 }
 
 .top-barre .left,
@@ -24,12 +36,16 @@
 }
 
 .top-barre .icon {
+<<<<<<< HEAD
   color: #008ecc;
   margin-top: -12px;
 }
 
 .top-barre p {
   margin-top: 5px;
+=======
+  color: #008ecc; /* couleur des icônes */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 }
 
 .top-barre span {

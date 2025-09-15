@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 .top-header {
   width: 100%;
+=======
+/* ===== HEADER GLOBAL ===== */
+.top-header {
+  width: 96%;
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
   background: #ffffff;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -11,6 +17,10 @@
   z-index: 1000;
 }
 
+<<<<<<< HEAD
+=======
+/* ===== LOGO ===== */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .logo {
   display: flex;
   align-items: center;
@@ -35,6 +45,10 @@
   color: #3498db;
 }
 
+<<<<<<< HEAD
+=======
+/* ===== SEARCH BAR ===== */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .search-bar {
   flex: 1;
   max-width: 600px;
@@ -72,6 +86,10 @@
   color: #3498db;
 }
 
+<<<<<<< HEAD
+=======
+/* ===== ACTIONS ===== */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .actions {
   display: flex;
   align-items: center;
@@ -97,6 +115,10 @@
   font-size: 1.1rem;
 }
 
+<<<<<<< HEAD
+=======
+/* ===== RESPONSIVE ===== */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 @media (max-width: 992px) {
   .search-bar {
     margin: 0 20px;

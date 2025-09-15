@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .topbar {
   background: #ffffff;
   border-bottom: 1px solid #eaeaea;
@@ -106,4 +107,108 @@
   font-size: 0.95rem;
   font-weight: 500;
   color: #2c3e50;
+=======
+/* Global Topbar */
+.topbar {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #f1f3f5;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+/* Brand Text */
+.brand-text {
+  font-size: 1.2rem;
+  color: #3498db;
+  transition: color 0.3s ease;
+}
+.brand-text:hover {
+  color: #2c80b4;
+}
+
+/* Search Bar */
+.topbar-search .search-group {
+  border: 1px solid #dee2e6;
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.topbar-search .search-group:focus-within {
+  border-color: #3498db;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+.topbar-search input {
+  padding: 0.5rem 1rem;
+}
+.search-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 0 1rem;
+  transition: background 0.3s ease;
+}
+.search-btn:hover {
+  background: #2c80b4;
+}
+
+/* Notifications */
+.notification-icon {
+  margin-right: 1rem;
+  color: #495057;
+  transition: color 0.2s ease;
+}
+.notification-icon:hover {
+  color: #3498db;
+}
+.badge-notif {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 50%;
+  padding: 3px 6px;
+  box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);
+}
+
+/* User Dropdown */
+.user-dropdown {
+  border: none !important;
+  background: transparent !important;
+}
+.user-avatar {
+  border: 2px solid #3498db;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.user-dropdown:hover .user-avatar {
+  transform: scale(1.05);
+  border-color: #2c80b4;
+}
+.username {
+  font-weight: 500;
+  color: #34495e;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.username:hover {
+  color: #3498db;
+}
+
+/* Dropdown Menu */
+.user-menu {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.user-menu .dropdown-item {
+  padding: 10px 16px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.user-menu .dropdown-item:hover {
+  background: #f0f4f8;
+  color: #3498db;
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 }

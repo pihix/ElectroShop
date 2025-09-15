@@ -65,7 +65,11 @@
 .product-card {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
+<<<<<<< HEAD
   padding: 10px;
+=======
+  padding: 20px;
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
   text-align: center;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -102,7 +106,11 @@
 }
 
 .price-container {
+<<<<<<< HEAD
   /* margin-bottom: 10px; */
+=======
+  margin-bottom: 10px;
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 }
 
 .original-price {
@@ -162,6 +170,10 @@
   transform: translateY(-2px);
 }
 
+<<<<<<< HEAD
+=======
+/* Section des marques avec disposition circulaire */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .brands-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -233,6 +245,10 @@
   background-color: #e8f4fd;
 }
 
+<<<<<<< HEAD
+=======
+/* Modal styles */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .modal-overlay {
   position: fixed;
   top: 0;

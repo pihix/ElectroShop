@@ -98,6 +98,11 @@
   text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+
+/* Carte centrale */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .auth-card {
   background: rgba(255, 255, 255, 0.15); 
   backdrop-filter: blur(10px); 
@@ -118,6 +123,10 @@
   font-size: 22px;
 }
 
+<<<<<<< HEAD
+=======
+/* Champs du formulaire */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .form-group {
   margin-bottom: 18px;
   text-align: left;
@@ -145,6 +154,10 @@
   box-shadow: 0 0 6px rgba(79, 172, 254, 0.5);
 }
 
+<<<<<<< HEAD
+=======
+/* Bouton */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .auth-btn {
   width: 100%;
   padding: 12px;
@@ -164,6 +177,10 @@
   background: linear-gradient(135deg, #43e97b, #38f9d7);
 }
 
+<<<<<<< HEAD
+=======
+/* Texte toggle */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 .toggle-text {
   margin-top: 18px;
   font-size: 14px;
@@ -182,6 +199,10 @@
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
+=======
+/* Animation d'apparition */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 @keyframes fadeIn {
   from {
     opacity: 0;

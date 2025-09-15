@@ -28,7 +28,11 @@
 
 .nav-button {
   padding: 10px 20px;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #0f172a 0%, #1e3c72 100%);
+=======
+  background: linear-gradient(135deg, #10416c, #00f2fe);
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
   color: #fff;
   border: none;
   border-radius: 8px;

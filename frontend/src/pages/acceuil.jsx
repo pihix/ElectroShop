@@ -12,7 +12,11 @@ const Acceuil = () => {
         <div>
             <TopBarre/>
             <TopHeader/>
+<<<<<<< HEAD
             <NavBar/>
+=======
+            {/* <NavBar/> */}
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
             <HeroBanner/>
             <SmartphoneDeals/>
             <MegaMartFooter/>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .produits-page {
   background: #f8f9fc;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -100,4 +101,89 @@
 .produit-form textarea:focus {
   border-color: #ff7f50;
   box-shadow: 0 0 6px rgba(255, 127, 80, 0.3);
+=======
+/* Conteneur principal */
+.produits-container {
+  background: #f8f9fb;
+  min-height: 100vh;
+}
+
+.produits-content {
+  max-height: 100vh;
+  padding-bottom: 20px;
+}
+
+/* Header */
+.produits-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 10px;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.add-btn {
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background: #0056b3 !important;
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.produits-card {
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produits-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Modal */
+.modal-header-custom {
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  color: #fff;
+}
+
+/* Image */
+.image-box {
+  flex: 0 0 250px;
+}
+
+.product-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #f1f1f1;
+}
+
+/* Form */
+form .form-control, 
+form .form-select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form .form-control:focus, 
+form .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 }

@@ -122,6 +122,10 @@
   color: #ffd700;
 }
 
+<<<<<<< HEAD
+=======
+/* Responsive design */
+>>>>>>> b00c15d9fb1abe2b7e2b2a088a70eb71b4541158
 @media (max-width: 768px) {
   .promo-container {
     flex-direction: column;
