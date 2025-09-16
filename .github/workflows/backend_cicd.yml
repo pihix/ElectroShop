@@ -5,6 +5,7 @@ on:
     branches: [main, dev, stage]
     paths:
       - "backend/**"
+      - ".github/workflows/backend*"
   pull_request:
     paths:
       - "backend/**"
