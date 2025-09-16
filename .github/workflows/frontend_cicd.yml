@@ -8,9 +8,9 @@ on:
       - feature/**
       - stage
       - deploy
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend_cicd.yml"
+    # paths:
+    #   - "frontend/**"
+    #   - ".github/workflows/frontend_cicd.yml"
   pull_request:
     branches: [main]
     paths:
