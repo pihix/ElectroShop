@@ -67,7 +67,7 @@ jobs:
   frontend_build:
     name: Build Frontend App
     runs-on: ubuntu-latest
-    needs: frontend_test
+    needs: [frontend_test, frontend_lint]
     defaults:
       run:
         working-directory: frontend
