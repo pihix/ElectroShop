@@ -79,4 +79,4 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t electroshop-backend:latest -f backend/Dockerfile .
+          docker build -t electroshop-backend:latest -f Dockerfile .
