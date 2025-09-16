@@ -51,6 +51,11 @@
   color: #fff;
 }
 
+.modal-header-custom .modal-title {
+  color: #000 !important;
+  font-weight: 600;       
+}
+
 /* Image */
 .image-box {
   flex: 0 0 250px;

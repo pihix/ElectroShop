@@ -33,7 +33,7 @@ const CartPage = () => {
                 <div className="product-info">
                   <span className="product-name">{item.name}</span>
                   <span className="product-unit-price">
-                    {Number(item.price).toFixed(2)} €
+                    {Number(item.price).toFixed(2)}€
                   </span>
                 </div>
                 <div className="quantity-control">
@@ -54,7 +54,7 @@ const CartPage = () => {
                   </button>
                 </div>
                 <span className="product-total">
-                  {(Number(item.price) * item.quantity).toFixed(2)} €
+                  {(Number(item.price) * item.quantity).toFixed(2)}€
                 </span>
                 <button
                   className="remove-btn"

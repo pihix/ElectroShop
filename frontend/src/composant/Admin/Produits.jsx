@@ -224,12 +224,12 @@ export default function Produits() {
                   <p><b>Catégorie :</b> {selectedProduct.categorie}</p>
                   <p><b>Marque :</b> {selectedProduct.marque}</p>
                   <p><b>Description :</b> {selectedProduct.description || "Aucune description"}</p>
-                  <p>
+                  {/* <p>
                     <b>Statut :</b>{" "}
                     <Badge bg={selectedProduct.is_active ? "success" : "secondary"} className="rounded-pill">
                       {selectedProduct.is_active ? "Actif" : "Inactif"}
                     </Badge>
-                  </p>
+                  </p> */}
                   <p><b>Remise :</b> {selectedProduct.discount_percentage || 0}%</p>
                   <p><b>Note :</b> {selectedProduct.rating || 0}/5</p>
                 </div>
@@ -343,7 +343,7 @@ export default function Produits() {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3">
+                {/* <Form.Group className="mb-3">
                   <Form.Check
                     type="checkbox"
                     label="Produit actif"
@@ -351,7 +351,7 @@ export default function Produits() {
                     checked={selectedProduct.is_active}
                     onChange={handleChange}
                   />
-                </Form.Group>
+                </Form.Group> */}
               </Form>
             </Modal.Body>
             <Modal.Footer>

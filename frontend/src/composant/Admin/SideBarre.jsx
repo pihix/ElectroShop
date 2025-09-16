@@ -51,13 +51,13 @@ export default function Sidebar() {
           </Nav.Link>
         </LinkContainer>
 
-        <div className="sidebar-section">Paramètres</div>
+        {/* <div className="sidebar-section">Paramètres</div>
 
         <LinkContainer to="/settings">
           <Nav.Link className="sidebar-link">
             <FaCog className="me-3" /> Configuration
           </Nav.Link>
-        </LinkContainer>
+        </LinkContainer> */}
       </Nav>
     </div>
   );

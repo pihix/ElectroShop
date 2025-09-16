@@ -12,7 +12,7 @@ export default function ProductData({ products, onView, onEdit, onDelete }) {
             <th>Prix</th>
             <th>Quantité</th>
             <th>Catégorie</th>
-            <th>Statut</th>
+            {/* <th>Statut</th> */}
             <th className="text-end">Actions</th>
           </tr>
         </thead>
@@ -24,11 +24,11 @@ export default function ProductData({ products, onView, onEdit, onDelete }) {
               <td>{product.prix}</td>
               <td>{product.qte}</td>
               <td>{product.categorie_id}</td>
-              <td>
+              {/* <td>
                 <Badge bg={product.is_active ? "success" : "secondary"} className="rounded-pill">
                   {product.is_active ? "Actif" : "Inactif"}
                 </Badge>
-              </td>
+              </td> */}
               <td className="text-end">
                 <Button
                   variant="outline-primary"

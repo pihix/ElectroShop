@@ -36,15 +36,15 @@
 }
 
 .product-image {
-  width: 70px;
+  /* width: 70px; */
   height: 70px;
-  border-radius: 8px;
-  object-fit: cover;
+  border-radius: 5px;
+  object-fit: contain;
 }
 
 .product-info {
   flex: 1;
-  margin-left: 15px;
+  margin-left: 100px;
 }
 
 .product-name {
@@ -56,12 +56,15 @@
 .product-unit-price {
   color: #777;
   font-size: 14px;
+  margin-right: 50%;
 }
 
 .quantity-control {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: 10px;
+  margin-right: 5px;
 }
 
 .qty-btn {
