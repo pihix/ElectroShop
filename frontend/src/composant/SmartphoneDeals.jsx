@@ -225,7 +225,7 @@ const handleAddToCart = (quantity = 1) => {
     )}
   </div>
 );
-
+// tesr
 
   return (
     <div className="smartphone-deals">
