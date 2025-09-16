@@ -2,19 +2,19 @@ name: Frontend CI/CD
 
 on:
   push:
-    branches:
-      - main
-      - dev
-      - feature/**
-      - stage
-      - deploy
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend_cicd.yml"
-  pull_request:
-    branches:
-      - main
-      - dev
+  #   branches:
+  #     - main
+  #     - dev
+  #     - feature/**
+  #     - stage
+  #     - deploy
+  #   paths:
+  #     - "frontend/**"
+  #     - ".github/workflows/frontend_cicd.yml"
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - dev
 
 jobs:
   frontend_lint:
