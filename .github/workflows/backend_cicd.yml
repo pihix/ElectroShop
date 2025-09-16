@@ -1,0 +1,85 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - feature/**
+      - stage
+      - deploy
+  pull_request:
+    branches:
+      - main
+      - dev
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  test:
+    name: Run Backend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      ENV_FILE: .env
+      db_username: test_user
+      db_password: test_password
+      db_hostname: localhost
+      db_port: 5432
+      db_name: test_db
+      secret_key: "testsecret"
+      algorithm: "HS256"
+      access_token_expire_minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run pytest
+        run: |
+          source venv/bin/activate
+          pytest --maxfail=1 --disable-warnings -q
+
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t electroshop-backend:latest -f backend/Dockerfile .
