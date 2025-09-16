@@ -14,6 +14,30 @@ jobs:
   install-dependencies:
     name: Install Dependencies
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      db_username: postgres
+      db_password: postgres
+      db_hostname: localhost
+      db_port: 5432
+      db_name: test_db
+      secret_key: testsecret
+      algorithm: HS256
+      access_token_expire_minutes: 15
     defaults:
       run:
         working-directory: backend
