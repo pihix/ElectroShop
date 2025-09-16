@@ -37,18 +37,10 @@ class ProductService:
         if not db_product:
             ResponseHandler.not_found_error("Product", product_id)
 
-        # Gestion de la concurrence optimiste
-        if updated_product.version != db_product.version:
-            # Conflit de version
-            from fastapi import HTTPException
-            raise HTTPException(status_code=409, detail="Conflit de version : le produit a été modifié par un autre utilisateur.")
-
         # Appliquer les modifications
         for key, value in updated_product.model_dump().items():
-            if key != "version":  # On ne modifie pas la version directement
-                setattr(db_product, key, value)
+            setattr(db_product, key, value)
 
-        db_product.version += 1  # Incrémenter la version
         db.commit()
         db.refresh(db_product)
         return ResponseHandler.update_success(db_product.title, db_product.id, db_product)

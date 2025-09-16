@@ -85,8 +85,6 @@ class Product(Base):
     images = Column(ARRAY(String), nullable=False)
     is_published = Column(Boolean, server_default="True", nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), nullable=False)
-    # Champ pour la gestion de la concurrence optimiste
-    version = Column(Integer, nullable=False, default=1)
 
     # Relationship with category (un produit appartient à une catégorie)
     category_id = Column(Integer, ForeignKey("categories.id", ondelete="CASCADE"), nullable=False)
