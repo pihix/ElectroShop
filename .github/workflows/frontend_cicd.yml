@@ -1,0 +1,107 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - feature/**
+      - stage
+      - deploy
+    paths:
+      - "frontend/**"
+      - ".github/workflows/frontend_cicd.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/frontend_cicd.yml"
+
+jobs:
+  frontend_lint:
+    name: Lint Frontend Code
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+  frontend_test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    needs: frontend_lint
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Unit Tests
+        run: npm run test
+
+  frontend_build:
+    name: Build Frontend App
+    runs-on: ubuntu-latest
+    needs: frontend_test
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build App
+        run: npm run build
+
+  frontend_docker_build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: frontend_build
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t frontend-electroshop:${{ github.sha }} .
