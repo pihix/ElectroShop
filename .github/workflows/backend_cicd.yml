@@ -8,6 +8,9 @@ on:
       - feature/**
       - stage
       - deploy
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend_cicd.yml"
   pull_request:
     branches:
       - main
