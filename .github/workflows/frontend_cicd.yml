@@ -107,6 +107,7 @@ jobs:
           docker build -t frontend-electroshop:${{ github.sha }} .
 
   push-frontend-ecr:
+    name: Push Docker Image to ECR
     runs-on: ubuntu-latest
     needs: frontend_docker_build
     defaults:
