@@ -115,3 +115,29 @@ jobs:
         run: |
           docker tag backend-electroshop:${{ github.sha }} ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }}
           docker push ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }}
+
+  deploy_backend:
+    name: Deploy Backend on EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Connect & Deploy Backend
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
+            docker login -u AWS -p $(aws ecr get-login-password --region ${{ secrets.AWS_REGION }}) ${{ secrets.ECR_DOMAIN }}
+
+            docker pull ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }}
+            cd ~/electroshop/backend
+
+            docker compose down || true
+            docker compose up -d --build
+
+            docker exec -i backend-web-1 alembic upgrade head || true
+          EOF
