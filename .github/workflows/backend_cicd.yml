@@ -131,7 +131,7 @@ jobs:
       - name: Connect & Deploy Backend
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
-            docker login -u AWS -p $(aws ecr get-login-password --region ${{ secrets.AWS_REGION }}) ${{ secrets.ECR_DOMAIN }}
+            docker login -u AWS -p $(aws ecr get-login-password --region ${{ vars.AWS_REGION }}) ${{ secrets.ECR_DOMAIN }}
 
             docker pull ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }}
             cd ~/electroshop/backend
