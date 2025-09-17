@@ -119,6 +119,7 @@ jobs:
   deploy_backend:
     name: Deploy Backend on EC2
     runs-on: ubuntu-latest
+    needs: push-backend-ecr
 
     steps:
       - name: Configure SSH
