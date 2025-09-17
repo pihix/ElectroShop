@@ -209,32 +209,31 @@ export default function Produits() {
               <Modal.Title>Détails du produit</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <div className="d-flex flex-wrap gap-3">
-                <div className="image-box">
-                  <img
-                    src={selectedProduct.image_url || "default.jpg"}
-                    alt={selectedProduct.nom}
-                    className="product-img"
-                  />
+              <div className="row align-items-start row-custom">
+                {/* Colonne gauche : image */}
+                <div className="col-md-8 text-center">
+                  <div className="image-box">
+                    <img
+                      src={selectedProduct.image_url || "default.jpg"}
+                      alt={selectedProduct.nom}
+                      className="product-img img-fluid"
+                    />
+                  </div>
                 </div>
-                <div className="flex-grow-1">
+
+                {/* Colonne droite : données */}
+                <div className="col-md-4">
                   <h4 className="mb-3">{selectedProduct.nom}</h4>
                   <p><b>Prix :</b> {selectedProduct.prix} €</p>
                   <p><b>Quantité :</b> {selectedProduct.qte}</p>
-                  <p><b>Catégorie :</b> {selectedProduct.categorie}</p>
+                  {/* <p><b>Catégorie :</b> {selectedProduct.categorie}</p> */}
                   <p><b>Marque :</b> {selectedProduct.marque}</p>
                   <p><b>Description :</b> {selectedProduct.description || "Aucune description"}</p>
-                  {/* <p>
-                    <b>Statut :</b>{" "}
-                    <Badge bg={selectedProduct.is_active ? "success" : "secondary"} className="rounded-pill">
-                      {selectedProduct.is_active ? "Actif" : "Inactif"}
-                    </Badge>
-                  </p> */}
-                  <p><b>Remise :</b> {selectedProduct.discount_percentage || 0}%</p>
-                  <p><b>Note :</b> {selectedProduct.rating || 0}/5</p>
                 </div>
               </div>
             </Modal.Body>
+
+
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>Fermer</Button>
             </Modal.Footer>

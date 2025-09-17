@@ -9,6 +9,8 @@
   padding-bottom: 20px;
 }
 
+
+
 /* Header */
 .produits-header {
   border-bottom: 2px solid #e9ecef;
@@ -50,6 +52,7 @@
   background: linear-gradient(135deg, #007bff, #6610f2);
   color: #fff;
 }
+
 
 .modal-header-custom .modal-title {
   color: #000 !important;
