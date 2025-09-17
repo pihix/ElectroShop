@@ -142,3 +142,5 @@ jobs:
 
             docker exec -i backend-web-1 alembic upgrade head || true
           EOF
+
+# test
