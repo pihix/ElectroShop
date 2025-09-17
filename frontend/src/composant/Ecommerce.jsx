@@ -348,7 +348,7 @@ const handleAddToCart = (quantity = 1) => {
                     alt={selectedProduct.name}
                   />
                 </div>
-                <div className="thumbnail-container">
+                {/* <div className="thumbnail-container">
                   {selectedProduct.images.map((image, index) => (
                     <div
                       key={index}
@@ -360,7 +360,7 @@ const handleAddToCart = (quantity = 1) => {
                       <img src={image} alt={`Vue ${index + 1}`} />
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
 
               <div className="modal-details">
