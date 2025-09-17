@@ -109,8 +109,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }} .
+          docker build -t backend-electroshop:${{ github.sha }} .
 
       - name: Tag & Push image
         run: |
+          docker tag backend-electroshop:${{ github.sha }} ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }}
           docker push ${{ secrets.ECR_REPO_BACKEND }}:${{ github.sha }}
