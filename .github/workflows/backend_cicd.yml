@@ -120,14 +120,19 @@ jobs:
     name: Deploy Backend on EC2
     runs-on: ubuntu-latest
     needs: push-backend-ecr
-
+    defaults:
+      run:
+        working-directory: backend
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          # ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
       - name: Connect & Deploy Backend
         run: |
