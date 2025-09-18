@@ -6,7 +6,7 @@ import Topbar from "./TopBarre";
 import ProductData from "./ProductData";
 import "../../assets/css/Admin/Produits.css"; 
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://34.236.156.56:8000";
 const TOKEN = localStorage.getItem("token");
 
 export default function Produits() {

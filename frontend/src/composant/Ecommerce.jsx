@@ -3,7 +3,7 @@ import "../assets/css/Ecommerce.css";
 import axios from "axios";
 import { CartContext } from "./CartContext";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://34.236.156.56:8000";
 
 const Ecommerce = ({ searchTerm = "" }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);

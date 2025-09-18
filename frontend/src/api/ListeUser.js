@@ -4,7 +4,7 @@ export const getAllUsers = async () => {
   const token = localStorage.getItem("token"); // récupère le token admin
   if (!token) throw new Error("Token admin manquant");
 
-  const response = await axios.get("http://localhost:8000/admin/users", {
+  const response = await axios.get("http://34.236.156.56:8000/admin/users", {
     headers: {
       Authorization: `Bearer ${token}`, 
     },

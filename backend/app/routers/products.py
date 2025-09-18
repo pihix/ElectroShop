@@ -61,5 +61,3 @@ def delete_product(
         product_id: int,
         db: Session = Depends(get_db)):
     return ProductService.delete_product(db, product_id)
-
-

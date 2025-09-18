@@ -50,9 +50,10 @@ app = FastAPI(
 
 
 origins = [
-    "http://localhost:5174",  # ton frontend React
-    "http://localhost:5173",  # parfois React lance sur 127.0.0.1 au lieu de localhost
-    "http://localhost:3000"
+    "http://localhost:5174",  
+    "http://localhost:5173",  
+    "http://localhost:3000",
+    "http://34.236.156.56:5173"
 ]
 
 app.add_middleware(

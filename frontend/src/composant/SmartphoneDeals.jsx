@@ -5,7 +5,7 @@ import Banner from "./Banner";
 import { Link } from "react-router-dom";
 import { CartContext } from "./CartContext";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://34.236.156.56:8000";
 const TOKEN = localStorage.getItem("token");
 
 export default function SmartphoneDeals({ searchTerm }) {
@@ -240,11 +240,20 @@ export default function SmartphoneDeals({ searchTerm }) {
                     onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value || 1)))}
                   />
                 </div>
-                <button
+                {/* <button
                   className="add-to-cart-btn"
                   onClick={() => handleAddToCart(parseInt(quantity))}
                 >
                   Ajouter au panier
+                </button> */}
+                <button
+                  className={`add-to-cart-btn ${
+                    selectedProduct.stock === 0 ? "unavailable" : "available"
+                  }`}
+                  onClick={() => handleAddToCart(parseInt(quantity))}
+                  disabled={selectedProduct.stock === 0}
+                >
+                  {selectedProduct.stock === 0 ? "Rupture de stock" : "Ajouter au panier"}
                 </button>
               </div>
             </div>

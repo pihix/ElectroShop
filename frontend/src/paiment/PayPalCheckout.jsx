@@ -31,7 +31,7 @@ const PayPalCheckout = () => {
   // Création de la commande côté backend avec vérification du stock
   const createCommandeBackend = async () => {
     try {
-      const response = await fetch("http://localhost:8000/commandes/", {
+      const response = await fetch("http://34.236.156.56:8000/commandes/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const PayPalCheckout = () => {
 
           try {
             // Confirmer le paiement côté backend
-            await fetch(`http://localhost:8000/commandes/${commandeId}/confirmer-paiement`, {
+            await fetch(`http://34.236.156.56:8000/commandes/${commandeId}/confirmer-paiement`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

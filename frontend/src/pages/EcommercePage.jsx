@@ -17,7 +17,6 @@ const EcoommercePage = () => {
         <div>
             <TopBarre/>
             <TopHeader onSearch={setSearchTerm}/>
-           
             <HeroBanner/>
             <Ecommerce searchTerm={searchTerm} />
             <MegaMartFooter/>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "http://34.236.156.56:8000";
 const TOKEN = localStorage.getItem("token"); // Token admin
 
 if (!TOKEN) console.error("Token admin manquant");

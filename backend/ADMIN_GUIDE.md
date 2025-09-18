@@ -12,7 +12,7 @@ Votre système dispose de 2 rôles utilisateur :
 
 ```bash
 # 1. Créer le premier admin via l'endpoint spécial
-POST http://localhost:8000/admin/create-first-admin
+POST http://34.236.156.56:8000/admin/create-first-admin
 Content-Type: application/json
 
 {
@@ -46,7 +46,7 @@ VALUES ('admin', 'admin@example.com', 'Admin Principal',
 
 ### 📋 Lister tous les utilisateurs (Admin requis)
 ```bash
-GET http://localhost:8000/admin/users
+GET http://34.236.156.56:8000/admin/users
 Authorization: Bearer YOUR_ADMIN_TOKEN
 ```
 
