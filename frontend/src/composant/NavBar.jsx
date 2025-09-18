@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import "../assets/css/NavBar.css";
 
 const categories = [
-  { name: "Ordinateur", target: "ordinateurs" },
-  { name: "Téléphone", target: "smartphones" },
-  { name: "Accesoires", target: "accessoires" },
-  { name: "Tablette", target: "tablettes" },
-  { name: "Électroménager", target: "electromenager" },
-  { name: "Objets connectés", target: "objets-connectes" },
+  { name: "Ordinateur", target: "pc" },
+  { name: "Téléphone", target: "smartphone" },
+  { name: "Accesoires", target: "accessoire" },
+  { name: "Tablette", target: "tablette" },
 ];
 
 function NavBar() {

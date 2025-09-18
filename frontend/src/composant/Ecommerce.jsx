@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import "../assets/css/Ecommerce.css";
 import axios from "axios";
 import { CartContext } from "./CartContext";
 
 const API_BASE = "http://localhost:8000";
 
-const Ecommerce = () => {
+const Ecommerce = ({ searchTerm = "" }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState([]);
-    const [quantity, setQuantity] = useState(1);
-  
+  const [quantity, setQuantity] = useState(1);
+
   const [filters, setFilters] = useState({
     category: "all",
     minPrice: "",
@@ -44,6 +44,7 @@ const Ecommerce = () => {
           description: p.description,
           originalPrice: p.old_price ? `${p.old_price}€` : "",
           newPrice: `${p.price}€`,
+          price: p.price,
           saving:
             p.old_price && p.old_price > p.price
               ? `${p.old_price - p.price}€`
@@ -53,6 +54,8 @@ const Ecommerce = () => {
           brand: p.brand || "Autre",
           category:
             (p.category && p.category.name) || p.category_name || "autre",
+         
+          stock: p.stock ?? 0,
         };
       });
 
@@ -62,72 +65,49 @@ const Ecommerce = () => {
     }
   };
 
-  // const handleAddToCart = () => {
-  //   if (selectedProduct) {
-  //     addToCart(selectedProduct);
-  //     alert("Produit ajouté au panier !");
-  //     closeModal();
-  //   }
-  // };
+  const handleAddToCart = (quantity = 1) => {
+    if (selectedProduct) {
+      if (quantity > selectedProduct.stock) {
+        alert(`Il ne reste que ${selectedProduct.stock} exemplaire(s) en stock.`);
+        return;
+      }
 
-// const handleAddToCart = (quantity = 1) => {
-//   if (selectedProduct) {
-//     const priceNumber = selectedProduct.newPrice
-//       ? parseFloat(selectedProduct.newPrice.toString().replace("€", ""))
-//       : 0; // fallback si newPrice est undefined
+      const priceNumber = Number(selectedProduct.price) || 0;
 
-//     const productToAdd = {
-//       id: selectedProduct.id,
-//       name: selectedProduct.name,
-//       price: priceNumber,
-//       image: selectedProduct.image,
-//       quantity: quantity,
-//     };
+      const productToAdd = {
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        price: priceNumber,
+        image: selectedProduct.image,
+        quantity,
+      };
 
-//     addToCart(productToAdd, quantity);
-//     alert("Produit ajouté au panier !");
-//     closeModal();
-//   }
-// };
+      addToCart(productToAdd, quantity);
+      alert("Produit ajouté au panier !");
+      closeModal();
+    }
+  };
 
+  const filteredProducts = products
+    .filter((product) => {
+      if (filters.category !== "all" && product.category !== filters.category)
+        return false;
+      if (filters.brand !== "all" && product.brand !== filters.brand) return false;
+      const productPrice = parseInt(product.price);
+      if (filters.minPrice && productPrice < parseInt(filters.minPrice))
+        return false;
+      if (filters.maxPrice && productPrice > parseInt(filters.maxPrice))
+        return false;
 
-const handleAddToCart = (quantity = 1) => {
-  if (selectedProduct) {
-   
-        const priceNumber = Number(selectedProduct.price) || 0;
+      // 🔹 Filtrage par searchTerm (commence par)
+      if (
+        searchTerm &&
+        !product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+      )
+        return false;
 
-
-    const productToAdd = {
-      id: selectedProduct.id,
-      name: selectedProduct.name,
-      price: priceNumber,
-      image: selectedProduct.image,
-      quantity: quantity,
-    };
-
-    addToCart(productToAdd, quantity);
-    alert("Produit ajouté au panier !");
-    closeModal();
-  }
-};
-
-
-
-
-  const filteredProducts = products.filter((product) => {
-    if (filters.category !== "all" && product.category !== filters.category)
-      return false;
-
-    if (filters.brand !== "all" && product.brand !== filters.brand) return false;
-
-    const productPrice = parseInt(product.newPrice);
-    if (filters.minPrice && productPrice < parseInt(filters.minPrice))
-      return false;
-    if (filters.maxPrice && productPrice > parseInt(filters.maxPrice))
-      return false;
-
-    return true;
-  });
+      return true;
+    });
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -138,15 +118,12 @@ const handleAddToCart = (quantity = 1) => {
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   const openModal = (product) => {
     setSelectedProduct(product);
     setSelectedImage(0);
     setQuantity(1);
   };
-
   const closeModal = () => setSelectedProduct(null);
-
   const changeImage = (index) => setSelectedImage(index);
 
   const handleFilterChange = (e) => {
@@ -167,9 +144,14 @@ const handleAddToCart = (quantity = 1) => {
     });
   };
 
-  // Génération des catégories et marques uniques dynamiques
-  const categories = [...new Set(products.map((p) => p.category))];
+  // const categories = [...new Set(products.map((p) => p.category_id))];
+
+const categories = useMemo(() => {
+  return [...new Set(products.map((p) => p.category_id))];
+}, [products]);
+  // const categories = [...new Set(products.map((p) => p.category))];
   const brands = [...new Set(products.map((p) => p.brand))];
+
 
   return (
     <div className="ecommerce">
@@ -188,7 +170,7 @@ const handleAddToCart = (quantity = 1) => {
               </button>
             </div>
 
-            <div className="filter-group">
+            {/* <div className="filter-group">
               <h4>Catégories</h4>
               <div className="filter-options">
                 <label>
@@ -201,20 +183,20 @@ const handleAddToCart = (quantity = 1) => {
                   />
                   Toutes les catégories
                 </label>
-                {categories.map((cat) => (
-                  <label key={cat}>
+                {categories.map((catId) => (
+                  <label key={catId}>
                     <input
                       type="radio"
                       name="category"
-                      value={cat}
-                      checked={filters.category === cat}
+                      value={catId}
+                      checked={filters.category === catId}
                       onChange={handleFilterChange}
                     />
-                    {cat}
+                    {catId}
                   </label>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className="filter-group">
               <h4>Prix</h4>
@@ -384,33 +366,32 @@ const handleAddToCart = (quantity = 1) => {
                 <div className="product-specs">
                   <h4>Caractéristiques</h4>
                   <ul>
-                    <li>
-                      <strong>Marque:</strong> {selectedProduct.brand}
-                    </li>
-                    <li>
-                      <strong>Catégorie:</strong> {selectedProduct.category}
-                    </li>
-                    <li>
-                      <strong>Garantie:</strong> 2 ans
-                    </li>
-                    <li>
-                      <strong>Livraison:</strong> Gratuite
-                    </li>
-                    <li>
-                      <strong>Disponibilité:</strong> En stock
-                    </li>
+                    <li><strong>Marque:</strong> {selectedProduct.brand}</li>
+                    <li><strong>Catégorie:</strong> {selectedProduct.category}</li>
+                    <li><strong>Garantie:</strong> 2 ans</li>
+                    <li><strong>Livraison:</strong> Gratuite</li>
+                    <li><strong>Stock:</strong> {selectedProduct.stock}</li>
                   </ul>
                 </div>
 
                 <div className="quantity-selector">
-                            <input type="number" id="quantity" min="1" defaultValue="1" />
+                  <input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value || 1)))}
+                  />
                 </div>
 
                 <button
-                  className="add-to-cart-btn"
+                  className={`add-to-cart-btn ${
+                    selectedProduct.stock === 0 ? "unavailable" : "available"
+                  }`}
                   onClick={() => handleAddToCart(parseInt(quantity))}
+                  disabled={selectedProduct.stock === 0}
                 >
-                  Ajouter au panier
+                  {selectedProduct.stock === 0 ? "Rupture de stock" : "Ajouter au panier"}
                 </button>
 
               </div>

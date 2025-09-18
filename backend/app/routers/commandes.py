@@ -16,6 +16,18 @@ from fastapi.security.http import HTTPAuthorizationCredentials
 
 router = APIRouter(tags=["Commandes"], prefix="/commandes")
 
+@router.post("/{commande_id}/confirmer-paiement", status_code=status.HTTP_200_OK)
+async def confirmer_paiement(
+    commande_id: int,
+    db: Session = Depends(get_db),
+    token: HTTPAuthorizationCredentials = Depends(auth_scheme)
+):
+    """Confirmer le paiement après retour PayPal"""
+    user_id = get_current_user(token)
+    return await CommandeService.confirmer_paiement(db, commande_id)
+
+
+
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=dict)
 async def create_commande(
@@ -115,3 +127,5 @@ async def cancel_commande_admin(
 ):
     """Annuler une commande (admin)"""
     return await CommandeService.cancel_commande(db, commande_id, None, is_admin=True)
+
+

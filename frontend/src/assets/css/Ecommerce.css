@@ -369,18 +369,34 @@ body {
 
 .add-to-cart-btn {
   padding: 8px;
-  background: #2ecc71;
   border: none;
   border-radius: 10px;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.3s ease;
 }
 
-.add-to-cart-btn:hover {
+/* État "Ajouter au panier" → Vert */
+.add-to-cart-btn.available {
+  background: #2ecc71;
+}
+
+.add-to-cart-btn.available:hover {
   background: #27ae60;
 }
+
+/* État "Rupture de stock" → Rouge */
+.add-to-cart-btn.unavailable {
+  background: #e74c3c;
+  cursor: not-allowed;
+}
+
+.add-to-cart-btn.unavailable:hover {
+  background: #c0392b;
+}
+
 
 
 

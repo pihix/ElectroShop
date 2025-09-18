@@ -33,7 +33,7 @@ const CartPage = () => {
                 <div className="product-info">
                   <span className="product-name">{item.name}</span>
                   <span className="product-unit-price">
-                    {Number(item.price).toFixed(2)}€
+                    {Number(item.price)}€
                   </span>
                 </div>
                 <div className="quantity-control">
@@ -54,7 +54,7 @@ const CartPage = () => {
                   </button>
                 </div>
                 <span className="product-total">
-                  {(Number(item.price) * item.quantity).toFixed(2)}€
+                  {(Number(item.price) * item.quantity)}€
                 </span>
                 <button
                   className="remove-btn"
@@ -76,15 +76,15 @@ const CartPage = () => {
         </div>
         <div className="summary-item">
           <span>Sous-total :</span>
-          <span>{subTotal.toFixed(2)} €</span>
+          <span>{subTotal} €</span>
         </div>
         <div className="summary-item">
           <span>Livraison :</span>
-          <span>{delivery === 0 ? "Gratuite" : `${delivery.toFixed(2)} €`}</span>
+          <span>{delivery === 0 ? "Gratuite" : `${delivery} €`}</span>
         </div>
         <div className="summary-item total">
           <span>Total :</span>
-          <span>{total.toFixed(2)} €</span>
+          <span>{total} €</span>
         </div>
 
         {/* Bouton PayPal */}

@@ -6,17 +6,20 @@ import HeroBanner from "../composant/HeroBanner";
 import MegaMartFooter from "../composant/MegaMartFooter";
 import SmartphoneCategorie from "../composant/Ecommerce";
 import Ecommerce from "../composant/Ecommerce";
+import { useState } from "react";
 
 
 
 const EcoommercePage = () => {
+      const [searchTerm, setSearchTerm] = useState("");
+    
     return (
         <div>
             <TopBarre/>
-            <TopHeader/>
-            {/* <NavBar/> */}
+            <TopHeader onSearch={setSearchTerm}/>
+           
             <HeroBanner/>
-            <Ecommerce/>
+            <Ecommerce searchTerm={searchTerm} />
             <MegaMartFooter/>
             
         </div>
