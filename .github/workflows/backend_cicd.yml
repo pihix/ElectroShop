@@ -136,7 +136,6 @@ jobs:
 
       - name: Connect & Deploy Backend
         run: |
-          cat ~/.ssh/id_rsa
           ssh -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
             docker login -u AWS -p $(aws ecr get-login-password --region ${{ vars.AWS_REGION }}) ${{ secrets.ECR_DOMAIN }}
 
