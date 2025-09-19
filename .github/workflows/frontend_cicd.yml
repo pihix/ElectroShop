@@ -155,25 +155,25 @@ jobs:
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
       - name: Connect & Deploy Frontend
-        env:
-          AWS_REGION: ${{ vars.AWS_REGION }}
-          ECR_REPO: ${{ secrets.ECR_REPO_FRONTEND }}
-          ECR_DOMAIN: ${{ secrets.ECR_DOMAIN }}
-          IMAGE_TAG: ${{ github.sha }}
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
-            echo " Logging in to ECR..."
-            docker login -u AWS -p \$(aws ecr get-login-password --region \$AWS_REGION) \$ECR_DOMAIN
+            echo "Logging in to ECR..."
+            if ! command -v aws &> /dev/null; then
+              echo "❌ AWS CLI is not installed"
+              exit 1
+            fi
 
-            echo " Pulling image from ECR..."
-            docker pull \$ECR_REPO:\$IMAGE_TAG
+            docker login -u AWS -p \$(aws ecr get-login-password --region ${{ vars.AWS_REGION }}) ${{ secrets.ECR_DOMAIN }}
 
-            echo " Cleaning up old container..."
-            docker stop frontend || true && docker rm frontend || true
+            echo "Pulling image from ECR..."
+            docker pull ${{ secrets.ECR_REPO_FRONTEND }}:${{ github.sha }}
 
-            echo " Starting new container..."
-            docker run -d --name frontend -p 80:5173 \$ECR_REPO:\$IMAGE_TAG
+            echo "Cleaning up old container..."
+            docker stop frontend || true
+            docker rm frontend || true
+
+            echo "Starting new container..."
+            docker run -d --name frontend -p 80:5173 ${{ secrets.ECR_REPO_FRONTEND }}:${{ github.sha }}
           EOF
 
-# test
-
+  # test
